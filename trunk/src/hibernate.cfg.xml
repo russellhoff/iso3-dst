@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/proyectoIso3</property>
+        <property name="hibernate.connection.username">eside</property>
+        <property name="hibernate.connection.password">eside</property>
+        
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hbm2ddl.auto">create</property>
+        
+		<!-- C3p0 pool connection manager
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        -->
+
+        <!-- SQL to stdout logging
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="use_sql_comments">true</property>
+        -->
+
+		<!-- Las clases a mapear por hibernate.
+				Cada Clase debera tener un fichero xml (en la misma ubicacion).
+		-->
+        <mapping resource="persistenca/Asignatura.hbm.xml"/>
+        <mapping resource="persistenca/Profesor.hbm.xml"/>
+		<mapping resource="persistenca/Alumno.hbm.xml"/>
+		<mapping resource="persistenca/Unidad.hbm.xml"/>
+		<mapping resource="persistenca/Evaluacion.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>
