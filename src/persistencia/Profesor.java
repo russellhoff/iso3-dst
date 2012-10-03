@@ -28,7 +28,14 @@ public class Profesor {
 	 * <h1>Constructora de Profesor</h1>
 	 * <p></p>
 	 */
-	public Profesor(){
+	public Profesor(int dni, String password, String nombre, String telefono, String email, String despacho){
+		
+		this.dni = dni;
+		this.password = password;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.email = email;
+		this.despacho = despacho;
 		
 	}
 	

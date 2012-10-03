@@ -2,7 +2,7 @@
 
 <hibernate-mapping>
 
-    <class name="iso3.hib.ejemploCC.Departamento" table="DEPARTAMENTO">
+    <class name="persistencia.Alumno" table="ALUMNOS">
 
         <id name="id" column="DEP_ID">
             <generator class="native"/>

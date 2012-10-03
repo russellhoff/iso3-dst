@@ -1,0 +1,19 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="persistencia.Profesor" table="PROFESORES">
+
+        <id name="id" column="PROF_ID">
+            <generator class="native"/>
+        </id>
+
+		<property name="dni" column="PROF_DNI" not-null="true"/>
+        <property name="nombre" column="PROF_NOMBRE" unique="true" required="true" not-null="true"/>
+		<property name="telefono" column="PROF_TFNO" not-null="true"/>
+		<property name="email" column="PROF_EMAIL" not-null="true"/>
+		<property name="despacho" column="PROF_DESPACHO" not-null="true"/>
+		
+    </class>
+
+</hibernate-mapping>

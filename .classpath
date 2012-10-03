@@ -2,5 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/mysql-connector-java-5.1.13-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/slf4j-simple-1.5.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
