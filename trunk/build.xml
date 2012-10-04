@@ -26,7 +26,7 @@
     </target>
  
     <target name="build" depends="prepare">
-        <javac srcdir="${source.dir}" destdir="${build.dir}" deprecation="true" fork="true">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" deprecation="true" includeantruntime="false" fork="true">
             <classpath>
                 <path refid="classpath"/>
             </classpath>
