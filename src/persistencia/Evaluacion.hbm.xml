@@ -1,0 +1,20 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="persistencia.Evaluacion" table="EVALUACIONES">
+
+        <id name="id" column="EVAL_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name="concepto" column="EVAL_CONCEPTO" not-null="true"/>
+		<property name="nota" column="EVAL_NOTA" not-null="true"/>
+		
+		<!-- relacion asignatura y alumno -->
+		<many-to-one name="asignatura" column="ASIGN_ID" not-null="true" />
+		<many-to-one name="alumno" column="ALM_ID" not-null="true" />
+
+    </class>
+
+</hibernate-mapping>

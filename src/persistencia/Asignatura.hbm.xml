@@ -1,0 +1,28 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="persistencia.Asignatura" table="ASIGNATURAS">
+
+        <id name="id" column="ASIGN_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name="codigo" column="ASIGN_CODIGO" not-null="true"/>
+		<property name="nombre" column="ASIGN_NOMBRE" not-null="true"/>
+		<property name="creditos" column="ASIGN_CREDITOS" not-null="true"/>
+		
+		<!-- relaciones: unidades, profesor?, alumnos -->
+		<set name="unidades">
+			<key column="ASIGN_ID" />
+			<one-to-many class="persistencia.Unidad" />
+		</set>
+		<many-to-one name="profesor" column="PROF_ID" not-null="false" />
+		<set name="alumnos" table="MATRICULADO" lazy="true" inverse="true"> <!-- si quitamos inverse="true" aqui, lo pondriamos en Alumno -->
+			<key column="ASIGN_ID" />
+			<many-to-many column="ALM_ID" class="persistencia.Alumno" />
+		</set>
+
+    </class>
+
+</hibernate-mapping>

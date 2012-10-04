@@ -1,0 +1,17 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="persistencia.Unidad" table="UNIDADES">
+
+        <id name="id" column="UD_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name="acronimo" column="UD_ACRONIMO" unique="true" not-null="true"/>
+		<property name="titulo" column="UD_TITULO" not-null="true"/>
+		<property name="contenido" column="UD_CONTENIDO" />
+
+    </class>
+
+</hibernate-mapping>

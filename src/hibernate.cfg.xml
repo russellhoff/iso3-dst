@@ -28,6 +28,10 @@
 
 		<!-- Las clases a mapear por hibernate. Cada Clase debera tener un fichero xml (en la misma ubicacion). -->
         <mapping resource="persistencia/Profesor.hbm.xml"/>
+		<mapping resource="persistencia/Unidad.hbm.xml"/>
+		<mapping resource="persistencia/Alumno.hbm.xml"/>
+		<mapping resource="persistencia/Evaluacion.hbm.xml"/>
+		<mapping resource="persistencia/Asignatura.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
