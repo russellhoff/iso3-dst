@@ -1,4 +1,4 @@
-<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
 
@@ -8,11 +8,11 @@
             <generator class="native"/>
         </id>
 
-		<property name="dni" column="PROF_DNI" not-null="true"/>
-        <property name="nombre" column="PROF_NOMBRE" unique="true" not-null="true"/><!-- falta requerido -->
-		<property name="telefono" column="PROF_TFNO" not-null="true"/>
-		<property name="email" column="PROF_EMAIL" not-null="true"/>
-		<property name="despacho" column="PROF_DESPACHO" not-null="true"/>
+		<property name="dni" column="PROF_DNI" />
+        <property name="nombre" column="PROF_NOMBRE" unique="true" not-null="true"/><!-- Requerido: not-null="true" -->
+		<property name="telefono" column="PROF_TFNO" />
+		<property name="email" column="PROF_EMAIL" />
+		<property name="despacho" column="PROF_DESPACHO" />
 		
     </class>
 
