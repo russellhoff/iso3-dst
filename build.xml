@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="help" name="iso3-dst">
+	
+    <property name="source.dir" value="src"/>
+    <property name="build.dir" value="bin"/>
+    <property name="lib.dir" value="lib"/>
+    <!--<property name="hibernate.dir" value="C:\hibernate-distribution-3.6.10.Final"/>-->
+    
+	<path id="classpath">
+        <pathelement path="${build.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <!--<fileset dir="${hibernate.dir}">
+            <include name="**/*.jar"/>
+        </fileset>-->
+    </path>
+	
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+	
+    <target name="prepare">
+    	<mkdir dir="${build.dir}"/>
+    </target>
+ 
+    <target name="build" depends="prepare">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" deprecation="true" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+    	<copy todir="${build.dir}">
+            <fileset dir="${source.dir}">
+                <include name="**/*.xml"/>
+            	<include name="**/*.properties"/>
+            </fileset>
+    	</copy>
+    </target>
+	
+    <target name="test" depends="build">
+        <java classname="persistencia.Test" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </java>
+    </target>
+    <target name="help">
+		<echo>Usage: ant [build | test | clean]</echo>
+	</target>
+</project>

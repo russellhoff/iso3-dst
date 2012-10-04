@@ -30,7 +30,7 @@
 				Cada Clase debera tener un fichero xml (en la misma ubicacion).
 		-->
         <!--<mapping resource="persistenca/Asignatura.hbm.xml"/>-->
-        <mapping resource="persistenca/Profesor.hbm.xml"/>
+        <mapping resource="persistencia/Profesor.hbm.xml"/>
 		<!--<mapping resource="persistenca/Alumno.hbm.xml"/>
 		<mapping resource="persistenca/Unidad.hbm.xml"/>
 		<mapping resource="persistenca/Evaluacion.hbm.xml"/>-->
