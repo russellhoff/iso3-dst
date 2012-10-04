@@ -9,6 +9,8 @@
 	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jon_Inazio/Dropbox/workspaces-Deusto/workspace-iso3/iso3-dst/lib/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/javassist-3.12.0.GA.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
