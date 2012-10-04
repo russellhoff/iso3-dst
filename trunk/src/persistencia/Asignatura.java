@@ -3,9 +3,9 @@
  */
 package persistencia;
 
-import soporte_persistencia.ListaAlumnos;
-import soporte_persistencia.ListaProfesores;
-import soporte_persistencia.ListaUnidades;
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * @author Jon_Inazio
@@ -21,15 +21,106 @@ public class Asignatura {
 	private int codigo;
 	private String nombre;
 	private float creditos;
-	private ListaAlumnos laClase;
-	private ListaUnidades lasUnidades;
-	private ListaProfesores losProfesores;
+	private Set<Alumno> alumnos;
+	private Set<Unidad> unidades;
+	private Set<Profesor> profesores;
 	
 	/*
 	 * Metodos
 	 */
 	public Asignatura(){
-		
+		this.alumnos = new HashSet<Alumno>();
+		this.unidades = new HashSet<Unidad>();
+		this.profesores = new HashSet<Profesor>();
+	}
+	
+	public Asignatura(int codigo, String nombre, float creditos){
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+		this.alumnos = new HashSet<Alumno>();
+		this.unidades = new HashSet<Unidad>();
+		this.profesores = new HashSet<Profesor>();
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public float getCreditos() {
+		return creditos;
+	}
+
+	public void setCreditos(float creditos) {
+		this.creditos = creditos;
+	}
+
+	public Set<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(Set<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
+
+	public Set<Unidad> getUnidades() {
+		return unidades;
+	}
+
+	public void setUnidades(Set<Unidad> unidades) {
+		this.unidades = unidades;
+	}
+
+	public void addUnidad(Unidad unidad){
+		if( !this.unidades.contains(unidad) ){
+			this.unidades.add(unidad);
+		}
+	}
+	
+	public void removeUnidad(Unidad unidad){
+		if( this.unidades.contains(unidad) ){
+			this.unidades.remove(unidad);
+		}
+	}
+
+	public Set<Profesor> getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(Set<Profesor> profesores) {
+		this.profesores = profesores;
+	}
+	
+	public void addProfesor(Profesor profesor){
+		if( !this.profesores.contains(profesor) ){
+			this.profesores.add(profesor);
+		}
+	}
+	
+	public void removeProfesor(Profesor profesor){
+		if( this.profesores.contains(profesor) ){
+			this.profesores.remove(profesor);
+		}
 	}
 	
 }
