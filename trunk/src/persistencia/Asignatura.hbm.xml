@@ -8,12 +8,12 @@
             <generator class="native"/>
         </id>
 
-        <property name="codigo" column="ASIGN_CODIGO" not-null="true"/>
+        <property name="codigo" column="ASIGN_CODIGO" unique="true" not-null="true"/>
 		<property name="nombre" column="ASIGN_NOMBRE" not-null="true"/>
 		<property name="creditos" column="ASIGN_CREDITOS" not-null="true"/>
 		
 		<!-- relaciones: unidades, profesor?, alumnos -->
-		<set name="unidades">
+		<set name="unidades" lazy="true" cascade="all">
 			<key column="ASIGN_ID" />
 			<one-to-many class="persistencia.Unidad" />
 		</set>

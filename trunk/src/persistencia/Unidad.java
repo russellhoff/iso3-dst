@@ -6,7 +6,7 @@ package persistencia;
 /**
  * @author Jon_Inazio
  * @author Lucia
- *
+ * @author Eztizen
  */
 public class Unidad {
 

@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * @author Jon_Inazio
  * @author Lucia
- *
+ * @author Eztizen
  */
 public class Alumno {
 
@@ -20,8 +20,8 @@ public class Alumno {
 	private String password;
 	private String nombre;
 	private String telefono;
-	private Set<Evaluacion> susEvaluaciones;
-	private Set<Asignatura> susAsignaturas;
+	private Set<Evaluacion> evaluaciones;
+	private Set<Asignatura> asignaturas;
 	
 	/*
 	 * Metodos
@@ -30,16 +30,16 @@ public class Alumno {
 	 * <h1>Constructora de Alumno solo con las listas</h1>
 	 */
 	public Alumno(){
-		susEvaluaciones = new HashSet<Evaluacion>();
-		susAsignaturas = new HashSet<Asignatura>();
+		evaluaciones = new HashSet<Evaluacion>();
+		asignaturas = new HashSet<Asignatura>();
 	}
 	
 	/**
 	 * <h1>Constructora de Alumno con atributos</h1>
 	 */
 	public Alumno(int dni, String password, String nombre, String telefono){
-		susEvaluaciones = new HashSet<Evaluacion>();
-		susAsignaturas = new HashSet<Asignatura>();
+		evaluaciones = new HashSet<Evaluacion>();
+		asignaturas = new HashSet<Asignatura>();
 		
 		this.dni = dni;
 		this.password = password;
@@ -79,44 +79,36 @@ public class Alumno {
 		this.telefono = telefono;
 	}
 
-	public Set<Evaluacion> getSusEvaluaciones() {
-		return susEvaluaciones;
+	public Set<Evaluacion> getEvaluaciones() {
+		return evaluaciones;
 	}
 
-	public void setSusEvaluaciones(Set<Evaluacion> susEvaluaciones) {
-		this.susEvaluaciones = susEvaluaciones;
+	public void setEvaluaciones(Set<Evaluacion> evaluaciones) {
+		this.evaluaciones = evaluaciones;
 	}
 	
 	public void addEvaluacion(Evaluacion evaluacion){
-		this.susEvaluaciones.add(evaluacion);
+		this.evaluaciones.add(evaluacion);
 	}
 	
 	public void removeEvaluacion(Evaluacion evaluacion){
-		if( this.susEvaluaciones.contains(evaluacion) ){
-			this.susEvaluaciones.remove(evaluacion);
-		}/*else{
-			hacer algo
-		}*/
+		this.evaluaciones.remove(evaluacion);
 	}
 
-	public Set<Asignatura> getSusAsignaturas() {
-		return susAsignaturas;
+	public Set<Asignatura> getAsignaturas() {
+		return asignaturas;
 	}
 
-	public void setSusAsignaturas(Set<Asignatura> susAsignaturas) {
-		this.susAsignaturas = susAsignaturas;
+	public void setAsignaturas(Set<Asignatura> asignaturas) {
+		this.asignaturas = asignaturas;
 	}
 	
 	public void addAsignatura(Asignatura asignatura){
-		this.susAsignaturas.add(asignatura);
+		this.asignaturas.add(asignatura);
 	}
 	
 	public void removeAsignatura(Asignatura asignatura){
-		if( this.susAsignaturas.contains(asignatura) ){
-			this.susAsignaturas.remove(asignatura);
-		}/*else{
-			hacer algo
-		}*/
+		this.asignaturas.remove(asignatura);
 	}
 	
 }

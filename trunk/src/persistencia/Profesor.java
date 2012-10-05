@@ -6,7 +6,7 @@ package persistencia;
 /**
  * @author Jon_Inazio
  * @author Lucia
- *
+ * @author Eztizen
  */
 public class Profesor {
 
@@ -40,7 +40,7 @@ public class Profesor {
 	}
 	
 	/**
-	 * <h1>Constructora acia</h1>
+	 * <h1>Constructora vacia</h1>
 	 * <p></p>
 	 */
 	public Profesor(){
