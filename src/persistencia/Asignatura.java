@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * @author Jon_Inazio
  * @author Lucia
- *
+ * @author Eztizen
  */
 public class Asignatura {
 
@@ -28,6 +28,9 @@ public class Asignatura {
 	/*
 	 * Metodos
 	 */
+	public Asignatura(){
+	}
+	
 	public Asignatura(){
 		this.alumnos = new HashSet<Alumno>();
 		this.unidades = new HashSet<Unidad>();
@@ -92,15 +95,11 @@ public class Asignatura {
 	}
 
 	public void addUnidad(Unidad unidad){
-		if( !this.unidades.contains(unidad) ){
-			this.unidades.add(unidad);
-		}
+		this.unidades.add(unidad);
 	}
 	
 	public void removeUnidad(Unidad unidad){
-		if( this.unidades.contains(unidad) ){
-			this.unidades.remove(unidad);
-		}
+		this.unidades.remove(unidad);
 	}
 
 	public Set<Profesor> getProfesores() {
@@ -112,15 +111,11 @@ public class Asignatura {
 	}
 	
 	public void addProfesor(Profesor profesor){
-		if( !this.profesores.contains(profesor) ){
-			this.profesores.add(profesor);
-		}
+		this.profesores.add(profesor);
 	}
 	
 	public void removeProfesor(Profesor profesor){
-		if( this.profesores.contains(profesor) ){
-			this.profesores.remove(profesor);
-		}
+		this.profesores.remove(profesor);
 	}
 	
 }

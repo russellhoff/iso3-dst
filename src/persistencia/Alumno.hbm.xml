@@ -10,7 +10,7 @@
 		<property name="telefono" column="ALM_TELEFONO" unique="true" not-null="true"/>
 		
 		<!-- Relación con Evaluación -->
-		<set name="evaluacion" lazy="true" cascade="all" inverse="true">
+		<set name="evaluaciones" table="EVALUACION" lazy="true" cascade="all" inverse="true">
 			<key column="ALM_ID"/>
 			<one-to-many class="persistencia.Evaluacion"/>
 		</set>

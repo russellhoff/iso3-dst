@@ -9,11 +9,11 @@ import org.hibernate.cfg.Configuration;
 /**
  * @author Jon_Inazio
  * @author Lucia
- *
+ * @author Eztizen
  */
 public class Test {
 
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public Test() throws Exception{
 		
@@ -31,6 +31,8 @@ public class Test {
 		Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 		
+		/*
+		 * PRUEBA DE PROFESOR
 		Profesor unProfe = new Profesor();
 		unProfe.setDni(78936044);
 		//unProfe.setId(1);
@@ -58,7 +60,52 @@ public class Test {
 		
 		session.save(unaUnidad1);
 		System.out.println("Añadida unidad!");
+		*/
 		
+		/*
+		 *  PRUEBA GENERAL
+		 */
+		Profesor p1 = new Profesor(65435677, "1234", "Perico Delgado", "654784356", "a@a.com", "DepartamentoZ");
+		Profesor p2 = new Profesor(90654327, "1234", "Patxi Zubilaga", "678901234", "b@b.com", "DepartamentoZX");
+		
+		Alumno a1 = new Alumno(76548732, "1234", "Iñaki Jundiz", "678543267");
+		Alumno a2 = new Alumno(98765432, "1234", "Alfonso Manero", "657895857");
+		
+		Asignatura as1 = new Asignatura(8796, "Ingeniería del Software", 12.0f);
+		Asignatura as2 = new Asignatura(1652, "Metodología de la Programación", 6.0f);
+		
+		Unidad u1 = new Unidad("Intr.ISO", "Introducción ISO", "Muchas cosas");
+		Unidad u2 = new Unidad("Intr.MP", "Introducción MP", "Muchisimas cosas");
+		
+		Evaluacion e1 = new Evaluacion("Concepto 1", 9.5f);
+		Evaluacion e2 = new Evaluacion("Concepto 2", 6.6f);
+
+		as1.setProfesor(p1);
+		as2.setProfesor(p2);
+		as1.getListaAlumnos().add(a1);
+		as2.getListaAlumnos().add(a2);
+		as1.getListaUnidades().add(u1);
+		as2.getListaUnidades().add(u2);
+		
+		e1.setAlumno(a1);
+		e1.setAsignatura(as1);
+		e2.setAlumno(a2);
+		e2.setAsignatura(as2);
+		
+		a1.getListaEvaluaciones().add(e1);
+		a2.getListaEvaluaciones().add(e2);
+		
+		session.save(p1);
+		session.save(p2);
+		session.save(as1);
+		session.save(as2);
+		session.save(u1);
+		session.save(u2);
+		session.save(a1);
+		session.save(a2);
+		session.save(e1);
+		session.save(e2); 
+		 
 		tx.commit();
 		
 		if( session != null ){
