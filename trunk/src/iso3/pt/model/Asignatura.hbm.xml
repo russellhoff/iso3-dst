@@ -1,0 +1,44 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="iso3.pt.model.Asignatura" table="ASIGNATURAS">
+
+		<!-- 
+		
+		- El identificador será asignado por la base de datos automáticamente.
+		- El código de la asignatura y el nombre son requeridos. Además el código debe ser
+			único.
+		- Debe aplicarse carga perezosa y tratamiento en cascada entre las asignaturas y sus
+			unidades (en el sentido de la relación estrictamente indicado).
+		- Todas las unidades deben estar vinculadas exactamente a una asignatura, es decir,
+			no puede haber unidades sin asignaturas.
+		- Debe aplicarse carga perezosa entre las asignaturas y los alumnos matriculados (en
+			el sentido de la relación estrictamente indicado).
+		
+		 -->
+
+        <id name="id" column="ASIGN_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name="codigo" column="ASIGN_CODIGO" unique="true" not-null="true"/>
+		<property name="nombre" column="ASIGN_NOMBRE" not-null="true"/>
+		<property name="creditos" column="ASIGN_CREDITOS" />
+		
+		<!-- relaciones: unidades, profesor?, alumnos -->
+		<set name="unidades" lazy="true" cascade="all">
+			<key column="ASIGN_ID" />
+			<one-to-many class="iso3.pt.model.Unidad" />
+		</set>
+		
+		<many-to-one name="profesor" column="PROF_ID" />
+		
+		<set name="alumnos" table="MATRICULADO" lazy="true" inverse="true"> <!-- si quitamos inverse="true" aqui, lo pondriamos en Alumno -->
+			<key column="ASIGN_ID" />
+			<many-to-many column="ALM_ID" class="iso3.pt.model.Alumno" />
+		</set>
+
+    </class>
+
+</hibernate-mapping>

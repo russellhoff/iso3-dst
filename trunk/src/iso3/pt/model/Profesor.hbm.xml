@@ -1,8 +1,14 @@
-<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
 
-    <class name="persistencia.Profesor" table="PROFESORES">
+    <class name="iso3.pt.model.Profesor" table="PROFESORES">
+		<!-- 
+		
+		- El identificador será asignado por la base de datos automáticamente.
+		- El nombre del profesor debe ser único y requerido.
+		
+		 -->
 
         <id name="id" column="PROF_ID">
             <generator class="native"/>
