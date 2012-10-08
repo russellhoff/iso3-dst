@@ -40,7 +40,7 @@
     </target>
 	
     <target name="test" depends="build">
-        <java classname="persistencia.Test" fork="true">
+        <java classname="iso3.pt.model.Test" fork="true">
             <classpath>
                 <path refid="classpath"/>
             </classpath>

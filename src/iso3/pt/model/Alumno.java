@@ -1,7 +1,7 @@
 /**
  * 
  */
-package persistencia;
+package iso3.pt.model;
 
 import java.util.HashSet;
 import java.util.Set;

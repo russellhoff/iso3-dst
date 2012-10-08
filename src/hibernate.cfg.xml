@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "dtd/hibernate-configuration-3.0.dtd">
+<?xml version='1.0' encoding='utf-8'?> <!DOCTYPE hibernate-configuration
+        PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
@@ -27,11 +28,15 @@
         -->
 
 		<!-- Las clases a mapear por hibernate. Cada Clase debera tener un fichero xml (en la misma ubicacion). -->
-        <mapping resource="persistencia/Profesor.hbm.xml"/>
-		<mapping resource="persistencia/Unidad.hbm.xml"/>
-		<mapping resource="persistencia/Alumno.hbm.xml"/>
-		<mapping resource="persistencia/Evaluacion.hbm.xml"/>
-		<mapping resource="persistencia/Asignatura.hbm.xml"/>
+        <mapping resource="iso3/pt/model/Profesor.hbm.xml"/>
+		
+		<mapping resource="iso3/pt/model/Alumno.hbm.xml"/>
+		
+		<mapping resource="iso3/pt/model/Unidad.hbm.xml"/>
+		
+		<mapping resource="iso3/pt/model/Evaluacion.hbm.xml"/>
+		
+		<mapping resource="iso3/pt/model/Asignatura.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

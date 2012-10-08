@@ -1,7 +1,7 @@
 /**
  * 
  */
-package persistencia;
+package iso3.pt.model;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
@@ -80,20 +80,20 @@ public class Test {
 		Evaluacion e1 = new Evaluacion("Concepto 1", 9.5f);
 		Evaluacion e2 = new Evaluacion("Concepto 2", 6.6f);
 
-		as1.setProfesor(p1);
-		as2.setProfesor(p2);
-		as1.getListaAlumnos().add(a1);
-		as2.getListaAlumnos().add(a2);
-		as1.getListaUnidades().add(u1);
-		as2.getListaUnidades().add(u2);
+		as1.addProfesor(p1);
+		as2.addProfesor(p2);
+		as1.getAlumnos().add(a1);
+		as2.getAlumnos().add(a2);
+		as1.getUnidades().add(u1);
+		as2.getUnidades().add(u2);
 		
 		e1.setAlumno(a1);
 		e1.setAsignatura(as1);
 		e2.setAlumno(a2);
 		e2.setAsignatura(as2);
 		
-		a1.getListaEvaluaciones().add(e1);
-		a2.getListaEvaluaciones().add(e2);
+		a1.getEvaluaciones().add(e1);
+		a2.getEvaluaciones().add(e2);
 		
 		session.save(p1);
 		session.save(p2);
@@ -132,7 +132,8 @@ public class Test {
 			t1.prueba();
 			t1.close();
 		}catch(Exception e){
-			System.out.println("****Error: " + e.getMessage());
+			System.out.println("****Error: " + e.getMessage() + "\nMore info: ");
+			e.printStackTrace();
 		}
 		
 		

@@ -1,9 +1,10 @@
 /**
  * 
  */
-package persistencia;
+package iso3.pt.model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -29,9 +30,6 @@ public class Asignatura {
 	 * Metodos
 	 */
 	public Asignatura(){
-	}
-	
-	public Asignatura(){
 		this.alumnos = new HashSet<Alumno>();
 		this.unidades = new HashSet<Unidad>();
 		this.profesores = new HashSet<Profesor>();
@@ -44,6 +42,10 @@ public class Asignatura {
 		this.alumnos = new HashSet<Alumno>();
 		this.unidades = new HashSet<Unidad>();
 		this.profesores = new HashSet<Profesor>();
+	}
+	
+	private Iterator<Alumno> getIteradorAlumnos(){
+		return this.alumnos.iterator();
 	}
 	
 	public int getId() {
@@ -116,6 +118,31 @@ public class Asignatura {
 	
 	public void removeProfesor(Profesor profesor){
 		this.profesores.remove(profesor);
+	}
+	
+	/**
+	 * <h1>¿Está matriculado un alumno?</h1>
+	 * <p>Función que dado un alumno, dice si se encuentra matriculado en la asignatura actual.</p>
+	 * @param alumno
+	 * @return boolean esta matriculado
+	 */
+	public boolean estaMatriculadoAlumno(Alumno alumno){
+		
+		boolean esta = false;
+		Iterator<Alumno> it = this.getIteradorAlumnos();
+		Alumno unAlumno = null;
+		
+		while (it.hasNext() && !esta){
+			unAlumno = it.next();
+			
+			if( unAlumno.getDni() == alumno.getDni() ){
+				esta = true;
+			}
+			
+		}
+		
+		return esta;
+		
 	}
 	
 }
