@@ -1,4 +1,4 @@
-<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
 
@@ -19,9 +19,9 @@
         	<generator class="assigned"/>
         </id>
         
-		<property name="password" column="ALM_PASSWORD" unique="true" not-null="true"/>
-		<property name="nombre" column="ALM_NOMBRE" unique="true" not-null="true"/>
-		<property name="telefono" column="ALM_TELEFONO" unique="true" not-null="true"/>
+		<property name="password" column="ALM_PASSWORD" not-null="true" />
+		<property name="nombre" column="ALM_NOMBRE" not-null="true" />
+		<property name="telefono" column="ALM_TELEFONO" />
 		
 		<!-- evaluaciones -->
 		<set name="evaluaciones" lazy="true" cascade="all" inverse="true">
