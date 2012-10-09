@@ -15,6 +15,7 @@
         </id>
 
 		<property name="dni" column="PROF_DNI" />
+		<property name="password" column="PROF_PASSWORD" />
         <property name="nombre" column="PROF_NOMBRE" unique="true" not-null="true"/><!-- Requerido: not-null="true" -->
 		<property name="telefono" column="PROF_TFNO" />
 		<property name="email" column="PROF_EMAIL" />

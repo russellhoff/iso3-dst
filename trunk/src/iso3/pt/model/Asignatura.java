@@ -18,7 +18,7 @@ public class Asignatura {
 	/*
 	 * Atributos
 	 */
-	private int id;
+	private Integer id;
 	private int codigo;
 	private String nombre;
 	private float creditos;
@@ -35,7 +35,7 @@ public class Asignatura {
 		this.profesores = new HashSet<Profesor>();
 	}
 	
-	public Asignatura(int codigo, String nombre, float creditos){
+	public Asignatura(Integer codigo, String nombre, float creditos){
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.creditos = creditos;
@@ -48,11 +48,11 @@ public class Asignatura {
 		return this.alumnos.iterator();
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

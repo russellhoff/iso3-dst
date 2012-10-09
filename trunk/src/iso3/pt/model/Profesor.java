@@ -13,8 +13,8 @@ public class Profesor {
 	/*
 	 * Atributos
 	 */
-	private int id;
-	private int dni;
+	private Integer id;
+	private Integer dni;
 	private String password;
 	private String nombre;
 	private String telefono;
@@ -28,7 +28,7 @@ public class Profesor {
 	 * <h1>Constructora de Profesor</h1>
 	 * <p></p>
 	 */
-	public Profesor(int dni, String password, String nombre, String telefono, String email, String despacho){
+	public Profesor(Integer dni, String password, String nombre, String telefono, String email, String despacho){
 		
 		this.dni = dni;
 		this.password = password;
@@ -47,19 +47,19 @@ public class Profesor {
 		
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 
