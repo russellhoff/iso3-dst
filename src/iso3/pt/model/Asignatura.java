@@ -24,7 +24,7 @@ public class Asignatura {
 	private float creditos;
 	private Set<Alumno> alumnos;
 	private Set<Unidad> unidades;
-	private Set<Profesor> profesores;
+	private Profesor profesor;
 	
 	/*
 	 * Metodos
@@ -32,7 +32,16 @@ public class Asignatura {
 	public Asignatura(){
 		this.alumnos = new HashSet<Alumno>();
 		this.unidades = new HashSet<Unidad>();
-		this.profesores = new HashSet<Profesor>();
+		this.profesor = null;
+	}
+	
+	public Asignatura(Integer codigo, String nombre, float creditos, Profesor profesor){
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+		this.alumnos = new HashSet<Alumno>();
+		this.unidades = new HashSet<Unidad>();
+		this.profesor = profesor;
 	}
 	
 	public Asignatura(Integer codigo, String nombre, float creditos){
@@ -41,7 +50,7 @@ public class Asignatura {
 		this.creditos = creditos;
 		this.alumnos = new HashSet<Alumno>();
 		this.unidades = new HashSet<Unidad>();
-		this.profesores = new HashSet<Profesor>();
+		this.profesor = null;
 	}
 	
 	private Iterator<Alumno> getIteradorAlumnos(){
@@ -87,6 +96,14 @@ public class Asignatura {
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
+	
+	public void addAlumnos(Alumno alumno){
+		this.alumnos.add(alumno);
+	}
+	
+	public void removeAlumnos(Alumno alumno){
+		this.alumnos.remove(alumno);
+	}
 
 	public Set<Unidad> getUnidades() {
 		return unidades;
@@ -96,30 +113,22 @@ public class Asignatura {
 		this.unidades = unidades;
 	}
 
-	public void addUnidad(Unidad unidad){
+	public void addUnidades(Unidad unidad){
 		this.unidades.add(unidad);
 	}
 	
-	public void removeUnidad(Unidad unidad){
+	public void removeUnidades(Unidad unidad){
 		this.unidades.remove(unidad);
 	}
 
-	public Set<Profesor> getProfesores() {
-		return profesores;
+	public Profesor getProfesor() {
+		return profesor;
 	}
 
-	public void setProfesores(Set<Profesor> profesores) {
-		this.profesores = profesores;
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
 	}
-	
-	public void addProfesor(Profesor profesor){
-		this.profesores.add(profesor);
-	}
-	
-	public void removeProfesor(Profesor profesor){
-		this.profesores.remove(profesor);
-	}
-	
+		
 	/**
 	 * <h1>¿Está matriculado un alumno?</h1>
 	 * <p>Función que dado un alumno, dice si se encuentra matriculado en la asignatura actual.</p>

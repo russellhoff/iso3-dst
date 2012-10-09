@@ -71,8 +71,14 @@ public class Test {
 		Alumno a1 = new Alumno(76548732, "1234", "Iñaki Jundiz", "678543267");
 		Alumno a2 = new Alumno(98765432, "1234", "Alfonso Manero", "657895857");
 		
-		Asignatura as1 = new Asignatura(8796, "Ingeniería del Software", 12.0f);
-		Asignatura as2 = new Asignatura(1652, "Metodología de la Programación", 6.0f);
+		Asignatura as1 = new Asignatura(8796, "Ingeniería del Software", (float) 12.0);
+		Asignatura as2 = new Asignatura(1652, "Metodología de la Programación", (float) 6.0);
+		
+		as1.addAlumnos(a1);
+		as2.addAlumnos(a2);
+		
+		a1.addAsignatura(as1);
+		a2.addAsignatura(as2);
 		
 		Unidad u1 = new Unidad("Intr.ISO", "Introducción ISO", "Muchas cosas");
 		Unidad u2 = new Unidad("Intr.MP", "Introducción MP", "Muchisimas cosas");
@@ -80,8 +86,8 @@ public class Test {
 		Evaluacion e1 = new Evaluacion("Concepto 1", 9.5f);
 		Evaluacion e2 = new Evaluacion("Concepto 2", 6.6f);
 
-		as1.addProfesor(p1);
-		as2.addProfesor(p2);
+		as1.setProfesor(p1);
+		as2.setProfesor(p2);
 		as1.getAlumnos().add(a1);
 		as2.getAlumnos().add(a2);
 		as1.getUnidades().add(u1);

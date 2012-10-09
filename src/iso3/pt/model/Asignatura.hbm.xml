@@ -1,4 +1,4 @@
-<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
 
@@ -32,8 +32,8 @@
 			<one-to-many class="iso3.pt.model.Unidad" />
 		</set>
 		
-		<!-- profesor -->
-		<many-to-one name="profesor" column="PROF_ID" />
+		<!-- profesor --><!-- Me da Error : field not found on iso3.pt.model.Asignatura -->
+		<many-to-one name="profesor" column="PROF_ID" not-null="false" />
 		
 		<!-- alumnos -->
 		<set name="alumnos" table="MATRICULADO" lazy="true" inverse="true"> <!-- si quitamos inverse="true" aqui, lo pondriamos en Alumno -->
