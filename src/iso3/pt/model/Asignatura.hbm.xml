@@ -26,17 +26,19 @@
 		<property name="nombre" column="ASIGN_NOMBRE" not-null="true"/>
 		<property name="creditos" column="ASIGN_CREDITOS" />
 		
-		<!-- relaciones: unidades, profesor?, alumnos -->
+		<!-- unidades -->
 		<set name="unidades" lazy="true" cascade="all">
 			<key column="ASIGN_ID" />
 			<one-to-many class="iso3.pt.model.Unidad" />
 		</set>
 		
+		<!-- profesor -->
 		<many-to-one name="profesor" column="PROF_ID" />
 		
+		<!-- alumnos -->
 		<set name="alumnos" table="MATRICULADO" lazy="true" inverse="true"> <!-- si quitamos inverse="true" aqui, lo pondriamos en Alumno -->
 			<key column="ASIGN_ID" />
-			<many-to-many column="ALM_ID" class="iso3.pt.model.Alumno" />
+			<many-to-many column="ALM_DNI" class="iso3.pt.model.Alumno" />
 		</set>
 
     </class>

@@ -13,7 +13,7 @@ public class Evaluacion {
 	/*
 	 * Atributos
 	 */
-	private int id;
+	private Integer id;
 	private String concepto;
 	private float nota;
 	private Asignatura asignatura;
@@ -41,11 +41,11 @@ public class Evaluacion {
 		this.alumno = alumno;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

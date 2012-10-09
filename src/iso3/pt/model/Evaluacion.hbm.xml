@@ -20,9 +20,11 @@
         <property name="concepto" column="EVAL_CONCEPTO" not-null="true"/>
 		<property name="nota" column="EVAL_NOTA" not-null="true"/>
 		
-		<!-- relacion asignatura y alumno -->
+		<!-- asignatura -->
 		<many-to-one name="asignatura" column="ASIGN_ID" not-null="true" />
-		<many-to-one name="alumno" column="ALM_ID" not-null="true" />
+		
+		<!-- alumno -->
+		<many-to-one name="alumno" column="ALM_DNI" not-null="true" />
 
     </class>
 

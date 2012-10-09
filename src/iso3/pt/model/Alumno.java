@@ -16,7 +16,7 @@ public class Alumno {
 	/*
 	 * Atributos
 	 */
-	private int dni;
+	private Integer dni;
 	private String password;
 	private String nombre;
 	private String telefono;
@@ -37,7 +37,7 @@ public class Alumno {
 	/**
 	 * <h1>Constructora de Alumno con atributos</h1>
 	 */
-	public Alumno(int dni, String password, String nombre, String telefono){
+	public Alumno(Integer dni, String password, String nombre, String telefono){
 		evaluaciones = new HashSet<Evaluacion>();
 		asignaturas = new HashSet<Asignatura>();
 		
@@ -47,11 +47,11 @@ public class Alumno {
 		this.telefono = telefono;
 	}
 
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 

@@ -13,7 +13,7 @@ public class Unidad {
 	/*
 	 * Atributos
 	 */
-	private int id;
+	private Integer id;
 	private String acronimo;
 	private String titulo;
 	private String contenido;
@@ -39,11 +39,11 @@ public class Unidad {
 		this.contenido = contenido;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
