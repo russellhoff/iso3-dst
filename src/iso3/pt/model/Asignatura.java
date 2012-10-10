@@ -44,6 +44,25 @@ public class Asignatura {
 		this.profesor = profesor;
 	}
 	
+	public Asignatura(Integer id, Integer codigo, String nombre, float creditos, Profesor profesor){
+		this.id = id;
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+		this.alumnos = new HashSet<Alumno>();
+		this.unidades = new HashSet<Unidad>();
+		this.profesor = profesor;
+	}
+	
+	public Asignatura(Integer id, Integer codigo, String nombre, float creditos){
+		this.id = id;
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+		this.alumnos = new HashSet<Alumno>();
+		this.unidades = new HashSet<Unidad>();
+	}
+	
 	public Asignatura(Integer codigo, String nombre, float creditos){
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -104,6 +123,26 @@ public class Asignatura {
 	public void removeAlumnos(Alumno alumno){
 		this.alumnos.remove(alumno);
 	}
+	
+	public Alumno getAlumnoByDni(Integer dniAlumno){
+		
+		Alumno al = null;
+		Iterator<Alumno> it = this.getIteradorAlumnos();
+		boolean enc = false;
+		
+		while(it.hasNext() && !enc){
+			al = it.next();
+			
+			if( al.getDni().equals(dniAlumno) )
+				enc = true;
+		}
+		
+		if (enc)
+			return al;
+		else
+			return null;
+		
+	}
 
 	public Set<Unidad> getUnidades() {
 		return unidades;
@@ -135,7 +174,7 @@ public class Asignatura {
 	 * @param alumno
 	 * @return boolean esta matriculado
 	 */
-	public boolean estaMatriculadoAlumno(Alumno alumno){
+	public boolean estaMatriculadoAlumno(Integer dniAlumno){
 		
 		boolean esta = false;
 		Iterator<Alumno> it = this.getIteradorAlumnos();
@@ -144,7 +183,7 @@ public class Asignatura {
 		while (it.hasNext() && !esta){
 			unAlumno = it.next();
 			
-			if( unAlumno.getDni() == alumno.getDni() ){
+			if( unAlumno.getDni() == dniAlumno ){
 				esta = true;
 			}
 			

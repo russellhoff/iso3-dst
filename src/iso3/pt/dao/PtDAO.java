@@ -4,11 +4,13 @@
 package iso3.pt.dao;
 
 
+import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import iso3.pt.model.*;
 
 /**
@@ -24,34 +26,91 @@ public class PtDAO {
 	 * Atributos
 	 */
 	private static PtDAO myPtDAO = null;
-	
-	/*
-	 * ¡¡NOTA!!
-	 * 
-	 * Dado que:
-	 * 
-	 * "Dado que muchas de las operaciones de negocio giran en torno a las asignaturas,
-		es conveniente que esta capa mantenga en caché e indexadas por su identificador
-		toda la lista de asignaturas de forma que su búsqueda sea lo más rápida posible y
-		evite el acceso a la base de datos."
-		
-		Entonces, no convendria que la cache de asignaturas fuese un Map en vez de un Set, 
-		que es como se intuye que sea (dado que hay un metodo que nos dan en la interfaz 
-		getAsignaturas que devuelve las asignaturas como un Set<>).
-	 * 
-	 */
-	private Map<Asignatura,String> asignaturas;
-	//private Set<Asignatura> asignaturas;
+	private Map<Integer, Asignatura> asignaturas;
+	private Connection con;
+
 	
 	/*
 	 * Metodos
 	 */
-	
+	/**
+	 * <h1>Constructora</h1>
+	 * <p>Crea una instancia de la clase PtDAO. También carga automáticamente en la caché las asignaturas.</p>
+	 */
 	private PtDAO(){
 		
-		asignaturas = new HashMap<Asignatura,String>();
-		//asignaturas = new HashSet<Asignatura>();
+		asignaturas = new HashMap<Integer, Asignatura>();
 		
+		String query = "SELECT * FROM Asignaturas";
+		
+		ResultSet asignsAux = this.realizarConsulta(query);
+		
+		try {
+			while (asignsAux.next()){
+				Asignatura as = new Asignatura(
+						asignsAux.getInt("ASIGN_ID"),
+						asignsAux.getInt("ASIGN_CODIGO"),
+						asignsAux.getString("ASIGN_NOMBRE"),
+						asignsAux.getFloat("ASIGN_CREDITOS")
+				);		
+				
+				this.asignaturas.put(as.getId(), as);
+				
+				/*
+				 * TODO hace falta cargar las demas relaciones de asignaturas?
+				 */
+				
+			}
+			
+			this.cerrarConexionBD();
+			
+		} catch (SQLException e) {
+			System.out.println("**Error mientras se cargaban las asignaturas a la caché: " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * <h1>Realizar consulta SQL</h1>
+	 * <p>Dada una consulta sql, realiza esa consulta y devuelve los/el objeto(s) ResultSet.</p>
+	 * @param query Consulta SQL.
+	 * @return ResultSet Resultado de la consulta SQL.
+	 */
+	private ResultSet realizarConsulta(String query){
+		
+		try {
+			this.con = DriverManager.getConnection(
+			        "jdbc:mysql://localhost/proyectoIso3?" +
+			        "user=eside&password=eside");
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			return rs;
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO
+			e.printStackTrace();
+			return null;
+		}
+
+		
+	}
+	
+	/**
+	 * <h1>Cerrar conexión</h1>
+	 * <p>Cierra la conexión a la BD.</p>
+	 */
+	private void cerrarConexionBD(){
+		try {
+			this.con.close();
+		} catch (SQLException e) {
+			System.out.println("**Error mientras se cerraba la conexión a la BD: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	public static PtDAO getPtDao(){
@@ -65,93 +124,183 @@ public class PtDAO {
 		return myPtDAO;
 	}
 	
-	public Profesor getProfesor(int idAsignatura){
-		/*
-		 * ¡¡NOTA!!
-		 * 
-		 * Una asignatura puede tener varios profesores. Por qué devuelve un unico profesor?
-		 */
-	}
-	
-	public Set<Alumno> getAlumnos(int idAsignatura){
+	/*
+	 * TODO
+	 */
+	public Profesor getProfesor(Integer idAsignatura){
+		
+		return this.getAsignatura(idAsignatura).getProfesor();
 		
 	}
 	
-	public List<Evaluacion> getEvaluacionesOrderedByAsignatura(int idAlumno){
+	/*
+	 * TODO
+	 */
+	public Set<Alumno> getAlumnos(Integer idAsignatura){
+		return this.getAsignatura(idAsignatura).getAlumnos();
+	}
+	
+	/*
+	 * TODO
+	 */
+	public List<Evaluacion> getEvaluacionesOrderedByAsignatura(Integer idAlumno){
+		if(  ){
+			
+		}else{
+			
+		}
+		Asignatura as = this.getAsignatura(idAsignatura);
+		Alumno al = as.getAlumnoByDni(idAlumno);
+		Set<Evaluacion> evals = al.getEvaluaciones();
+		List<Evaluacion> ret = new List<Evaluacion>();
+		{
+		};
+	}
+	
+	/*
+	 * TODO
+	 */
+	public Set<Evaluacion> getEvaluaciones(Integer idAsignatura, Integer idAlumno){
+		Asignatura as = this.getAsignatura(idAsignatura);
+		Alumno al = as.getAlumnoByDni(idAlumno);
+		return al.getEvaluaciones();
+	}
+	
+	/*
+	 * TODO
+	 */
+	public void addEvaluacion(String concepto, float nota, Integer idAsignatura, Integer idAlumno){
 		
 	}
 	
-	public Set<Evaluacion> getEvaluaciones(int idAsignatura, int idAlumno){
-		
+	/*
+	 * TODO
+	 */
+	public Set<Unidad> getUnidades(Integer idAsignatura){
+		return this.getAsignatura(idAsignatura).getUnidades();
 	}
 	
-	public void addEvaluacion(String concepto, float nota, int idAsignatura, int idAlumno){
-		
+	/*
+	 * TODO
+	 */
+	public void addAsignatura(Asignatura asignatura){
+		this.asignaturas.put(asignatura.getId(), asignatura);
 	}
 	
-	public Set<Unidad> getUnidades(int idAsignatura){
-		
-	}
-	
-	/**
-	 * 
-	 * @return
+	/*
+	 * TODO
 	 */
 	public Set<Asignatura> getAsignaturas(){
 		return asignaturas;
 	}
 	
-	public Alumno getAlumno(int id){
-		
+	/**
+	 * <h1>Obtener un alumno</h1>
+	 * <p>Devuelve el alumno dado un identificador</p>
+	 * @param id DNI del alumno
+	 * @return El Alumno. Si hay excepción, devuelve null;
+	 */
+	public Alumno getAlumno(Integer id){
+		ResultSet rs = this.realizarConsulta("SELECT * FROM Alumnos WHERE Alumnos.ALM_DNI='" + id + "' LIMIT 1");
+	
+		try {
+			rs.next();
+			Alumno al = new Alumno(
+					rs.getInt("ALM_DNI"),
+					rs.getString("ALM_PASSWORD"),
+					rs.getString("ALM_NOMBRE"),
+					rs.getString("ALM_TELEFONO")
+			);	
+			
+			this.cerrarConexionBD();
+			
+			return al;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
-	public Asignatura getAsignatura(int id){
+	/*
+	 * TODO
+	 */
+	public Asignatura getAsignatura(Integer id){
 		
 		Asignatura unAsign = null; 
 		
-		if( asignaturas.containsValue(id) ){
+		if( asignaturas.containsKey(id) ){
+			//esta en la cache
 			
-			//esta en cache
+			unAsign = asignaturas.get(id);
 			
-		}else{
+		}/*else{
 			
-			//no esta en cache
+			//no esta en cache --> buscar en la sesion
 			
-		}
+			esto no seria asi??
+			
+		}*/
+		
+		return unAsign;
 		
 	}
 	
-	public Alumno loginAlumno(int dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
+	/*
+	 * TODO
+	 */
+	public Alumno loginAlumno(Integer dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
 		
 	}
 	
-	public Set<Asignatura> getAsignaturas(int idAlumno){
+	/*
+	 * TODO
+	 */
+	public Set<Asignatura> getAsignaturas(Integer idAlumno){
 		
 	}
 	
-	public void matricular(int idAlumno, int idAsignatura){
+	/*
+	 * TODO
+	 */
+	public void matricular(Integer idAlumno, Integer idAsignatura){
 		
 	}
 	
-	public void desmatricular(int idAlumno, int idAsignatura){
+	/*
+	 * TODO
+	 */
+	public void desmatricular(Integer idAlumno, Integer idAsignatura){
 		
 	}
 	
-	public Profesor loginProfesor(int dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
+	/*
+	 * TODO
+	 */
+	public Profesor loginProfesor(Integer dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
 		
 	}
 	
-	public Set<Asignatura> getAsignaturasProfesor(int idProfesor){
+	/*
+	 * TODO
+	 */
+	public Set<Asignatura> getAsignaturasProfesor(Integer idProfesor){
 		
 	}
 	
-	public Profesor getProfesorByDni(int dni) throws UserNotFoundException{
+	/*
+	 * TODO
+	 */
+	public Profesor getProfesorByDni(Integer dni) throws UserNotFoundException{
 		
 	}
 	
-	public List<Evaluacion> getEvaluacionesAsignatura(int idAsignatura){
+	/*
+	 * TODO
+	 */
+	public List<Evaluacion> getEvaluacionesAsignatura(Integer idAsignatura){
 		
 	}
 	
-
 }
