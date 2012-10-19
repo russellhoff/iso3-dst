@@ -111,4 +111,9 @@ public class Alumno {
 		this.asignaturas.remove(asignatura);
 	}
 	
+	@Override
+	public String toString(){
+		return this.getNombre() + " (dni " + this.getDni() +")";
+	}
+	
 }

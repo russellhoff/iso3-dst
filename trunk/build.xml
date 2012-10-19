@@ -39,14 +39,23 @@
     	</copy>
     </target>
 	
-    <target name="test" depends="build">
+    <target name="test.model" depends="build">
         <java classname="iso3.pt.model.Test" fork="true">
             <classpath>
                 <path refid="classpath"/>
             </classpath>
         </java>
     </target>
+	
+	<target name="test.dao" depends="build">
+	    <java classname="iso3.pt.dao.Test" fork="true">
+	        <classpath>
+	            <path refid="classpath"/>
+	        </classpath>
+	    </java>
+	</target>
+	
     <target name="help">
-		<echo>Usage: ant [build | test | clean]</echo>
+		<echo>Usage: ant [prepare | build | test.model | test.dao | clean]</echo>
 	</target>
 </project>

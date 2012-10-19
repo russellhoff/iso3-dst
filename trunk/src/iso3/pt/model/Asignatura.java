@@ -193,4 +193,8 @@ public class Asignatura {
 		
 	}
 	
+	public String toString(){
+		return this.getNombre() + " - " + this.getCreditos() + "\n";
+	}
+	
 }
