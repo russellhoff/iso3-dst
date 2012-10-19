@@ -11,7 +11,8 @@
         <property name="hibernate.connection.password">eside</property>
         
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hbm2ddl.auto">create</property>
+        <!-- <property name="hbm2ddl.auto">create</property> te borra lo anterior y lo vuelve a crear -->
+        <property name="hbm2ddl.auto">validate</property> <!-- antes de meter nada, mira si está anteriormente -->
         
 		<!-- C3p0 pool connection manager
         <property name="hibernate.c3p0.min_size">5</property>
