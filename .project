@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>iso3-dst</name>
+	<name>gestorUD</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>struts-2.3.4.1</name>
+			<type>2</type>
+			<location>C:/struts-2.3.4.1</location>
+		</link>
+	</linkedResources>
 </projectDescription>

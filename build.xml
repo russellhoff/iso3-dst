@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project basedir="." default="help" name="iso3-dst">
+<project basedir="." default="help" name="gestorUD">
 	
-    <property name="source.dir" value="src"/>
-    <property name="build.dir" value="bin"/>
-    <property name="lib.dir" value="lib"/>
+	<property environment="env" />
+	<property name="tomcat.home" value="${env.TOMCAT_HOME}" />
+	<property name="project.file" value="gestorUD" />
+    <property name="source.dir" value="src" />
+    <property name="build.dir" value="bin" />
+	<property name="conf.dir" value="conf" />
+    <property name="lib.dir" value="lib" />
+	<property name="dist.dir" value="dist" />
     <!--<property name="hibernate.dir" value="C:\hibernate-distribution-3.6.10.Final"/>-->
     
+	
+	
 	<path id="classpath">
         <pathelement path="${build.dir}"/>
         <fileset dir="${lib.dir}">
@@ -19,10 +26,12 @@
 	
     <target name="clean">
         <delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}"/>
     </target>
 	
     <target name="prepare">
     	<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
     </target>
  
     <target name="build" depends="prepare">
@@ -35,6 +44,7 @@
             <fileset dir="${source.dir}">
                 <include name="**/*.xml"/>
             	<include name="**/*.properties"/>
+				<include name="**/web.xml"/>
             </fileset>
     	</copy>
     </target>
@@ -55,7 +65,34 @@
 	    </java>
 	</target>
 	
+	<target name="jar">
+		<jar destfile="${dist.dir}/${project.file}.jar">
+            <fileset dir="${build.dir}" excludes="**/Test.class"/>
+            <manifest>
+                <attribute name="Built-By" value="University of Deusto"/>
+            </manifest>
+        </jar>
+	</target>
+	
+	<target name="war">
+		<war warfile="${dist.dir}/${project.file}.war" webxml="${conf.dir}/web.xml">
+			<classes dir="${build.dir}"/>
+	    	<lib dir="${lib.dir}"/>
+			<zipfileset dir="jsp" prefix="jsp"/>
+			<zipfileset dir="html" />
+		</war>
+	</target>
+	
+	<target name="deploy" depends="war">
+		<copy file="${dist.dir}/${project.file}.war" todir="${tomcat.home}/webapps"/>
+	</target>
+	
+	<target name="undeploy">
+		<delete file="${tomcat.home}/webapps/${project.file}.war"/>
+		<delete dir="${tomcat.home}/webapps/${project.file}"/>
+	</target>
+	
     <target name="help">
-		<echo>Usage: ant [prepare | build | test.model | test.dao | clean]</echo>
+		<echo>Usage: ant [prepare | build | jar | war | deploy | undeploy | test.model | test.dao | clean]</echo>
 	</target>
 </project>

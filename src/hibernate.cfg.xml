@@ -12,7 +12,7 @@
         
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- <property name="hbm2ddl.auto">create</property> te borra lo anterior y lo vuelve a crear -->
-        <property name="hbm2ddl.auto">validate</property> <!-- antes de meter nada, mira si está anteriormente -->
+        <property name="hbm2ddl.auto">validate</property> <!-- create: borra y lo crea todo de nuevo - validate: añade algo y usa lo anterior -->
         
 		<!-- C3p0 pool connection manager
         <property name="hibernate.c3p0.min_size">5</property>
