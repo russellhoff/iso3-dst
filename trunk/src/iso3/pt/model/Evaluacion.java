@@ -34,6 +34,13 @@ public class Evaluacion {
 		this.nota = nota;
 	}
 	
+	/**
+	 * <h1>Crear evaluacion con las referencias asignadas</h1>
+	 * @param concepto
+	 * @param nota
+	 * @param asignatura
+	 * @param alumno
+	 */
 	public Evaluacion(String concepto, float nota, Asignatura asignatura, Alumno alumno){
 		this.concepto = concepto;
 		this.nota = nota;

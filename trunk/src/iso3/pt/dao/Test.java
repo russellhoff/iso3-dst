@@ -13,7 +13,8 @@ import java.util.Iterator;*/
 
 /**
  * @author Jon_Inazio
- *
+ * <h1>Preparación de datos de BBDD</h1>
+ * <p>Esta clase preparara, creara y guardara los datos en la BBDD necesarios para trabajar con la aplicación</p>
  */
 public class Test {
 

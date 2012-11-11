@@ -18,7 +18,10 @@
 
         <property name="acronimo" column="UD_ACRONIMO" unique="true" not-null="true" />
 		<property name="titulo" column="UD_TITULO" not-null="true" />
-		<property name="contenido" column="UD_CONTENIDO" />
+		<!-- Se puede hacer asi la de abajo, tambien: <property name="contenido" type="string" column="UD_CONTENIDO" />  -->
+		<property name="contenido" type="string">
+		    <column name="UD_CONTENIDO" length="500"/>
+		</property>
 
     </class>
 

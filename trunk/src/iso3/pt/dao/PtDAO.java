@@ -71,14 +71,14 @@ public class PtDAO {
 			}
 			
 			//Mostrar una asignatura:
-			Iterator<Entry<Integer, Asignatura>> it2 = this.asignaturas.entrySet().iterator();
+			/*Iterator<Entry<Integer, Asignatura>> it2 = this.asignaturas.entrySet().iterator();
 			Asignatura asigAux = null;
 			
 			while(it2.hasNext()){
 				Map.Entry<Integer,Asignatura> e= (Map.Entry<Integer,Asignatura>)it2.next();
 				asigAux = (Asignatura)e.getValue();
-				//System.out.println("Asignatura #" + e.getKey() + ": " + asigAux.getNombre() + " (" + asigAux.getCreditos() + ")");
-			}
+				System.out.println("Asignatura #" + e.getKey() + ": " + asigAux.getNombre() + " (" + asigAux.getCreditos() + ")");
+			}*/
 			
 			this.closeSession();
 			
