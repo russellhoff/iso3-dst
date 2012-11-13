@@ -1,0 +1,24 @@
+Alumnos: 15
+	Pavel Benavidez Moreno
+	Akemi Briones Parra
+	Libia Barrientos Escobar
+	André Baca Rael
+	Leslie Jurado Naranjo
+	Ara Tórrez Oquendo
+	Joscio Argüello Nevarez
+	Pacífico Sánchez Escobedo
+	Esaú Regalado Caraballo
+	Rina Valladares Domínquez
+	Maclovio Salcedo Enríquez
+	Amilcar Madrigal Menchaca
+	Elsira Puga Gallardo
+	Fedor Cadena Serrato
+	Celinda Caldera Cedillo
+	
+Asignaturas: 5
+
+	Álgebra
+	Cálculo
+	Programación
+	Metodología de la programación
+	Sistemas operativos

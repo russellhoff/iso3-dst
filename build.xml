@@ -44,7 +44,15 @@
             <fileset dir="${source.dir}">
                 <include name="**/*.xml"/>
             	<include name="**/*.properties"/>
-				<include name="**/web.xml"/>
+            </fileset>
+			<fileset dir="${source.dir}">
+                <include name="**/*.xml"/>
+            	<include name="**/*.properties"/>
+            </fileset>
+            <fileset dir="${conf.dir}">
+                <include name="**/*.xml"/>
+            	<include name="**/*.properties"/>
+				<exclude name="**/web.xml"/>
             </fileset>
     	</copy>
     </target>
@@ -65,7 +73,7 @@
 	    </java>
 	</target>
 	
-	<target name="jar">
+	<target name="jar"  depends="build">
 		<jar destfile="${dist.dir}/${project.file}.jar">
             <fileset dir="${build.dir}" excludes="**/Test.class"/>
             <manifest>
@@ -74,13 +82,18 @@
         </jar>
 	</target>
 	
-	<target name="war">
-		<war warfile="${dist.dir}/${project.file}.war" webxml="${conf.dir}/web.xml">
-			<classes dir="${build.dir}"/>
+	<target name="war" depends="jar">
+	    <copy file="${dist.dir}/${project.file}.jar" todir="${lib.dir}"/>
+		<war 
+		    warfile="${dist.dir}/${project.file}.war" 
+		    webxml="${conf.dir}/web.xml">
+			<exclude name="${dist.dir}/${project.distname}.war"/>
 	    	<lib dir="${lib.dir}"/>
+	    	<zipfileset dir="css" prefix="css"/>
 			<zipfileset dir="jsp" prefix="jsp"/>
 			<zipfileset dir="html" />
 		</war>
+		<delete file="${lib.dir}/${project.file}.jar"/>
 	</target>
 	
 	<target name="deploy" depends="war">
