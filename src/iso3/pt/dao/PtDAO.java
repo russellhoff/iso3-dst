@@ -350,40 +350,27 @@ public class PtDAO {
 		
 		this.openSession();
 		
-		Query q = null;
+		Query q = session.createQuery("from Alumno as al where al.dni=:dni");
+		q.setInteger("dni", dni);
+		@SuppressWarnings("unchecked")
+		List<Alumno> alms = q.list();
+		Iterator<Alumno> it = alms.iterator();
 		
-		try {
+		if(!it.hasNext())
 			
-			q = session.createQuery("from Alumno as al where al.dni=:dni");
-			q.setInteger("dni", dni);
-			@SuppressWarnings("unchecked")
-			List<Alumno> alms = q.list();
-			Iterator<Alumno> it = alms.iterator();
+			throw new UserNotFoundException(dni);
+		
+		else{
 			
-			if(!it.hasNext())
-				
-				throw new UserNotFoundException(dni);
+			Alumno alm = (Alumno)it.next();
 			
-			else{
-				
-				Alumno alm = (Alumno)it.next();
-				
-				if( alm.getPassword().equals(pass) )
-					return alm;
-				else
-					throw new IncorrectPasswordException();
-				
+			if( alm.getPassword().equals(pass) ){
+				this.closeSession();
+				return alm;
+			}else{
+				this.closeSession();
+				throw new IncorrectPasswordException();
 			}
-			
-		} catch (Exception e) {
-			
-			System.out.println("Error al loguear alumno: " + e.getMessage());
-			return null;
-			
-		}finally{
-
-			this.closeSession();
-				
 		}
 		
 	}
@@ -498,41 +485,31 @@ public class PtDAO {
 		
 		this.openSession();
 		
-		Query q = null;
+		Query q = session.createQuery("from Profesor as p where p.dni=:dni");
+		q.setInteger("dni", dni);
+		@SuppressWarnings("unchecked")
+		List<Profesor> ps = q.list();
+		Iterator<Profesor> it = ps.iterator();
 		
-		try {
+		if(!it.hasNext())
 			
-			q = session.createQuery("from Profesor as p where p.dni=:dni");
-			q.setInteger("dni", dni);
-			@SuppressWarnings("unchecked")
-			List<Profesor> ps = q.list();
-			Iterator<Profesor> it = ps.iterator();
+			throw new UserNotFoundException(dni);
+		
+		else{
 			
-			if(!it.hasNext())
-				
-				throw new UserNotFoundException(dni);
+			Profesor p = (Profesor)it.next();
 			
-			else{
-				
-				Profesor p = (Profesor)it.next();
-				
-				if( p.getPassword().equals(pass) )
-					return p;
-				else
-					throw new IncorrectPasswordException();
-				
+			if( p.getPassword().equals(pass) ){
+				this.closeSession();
+				return p;
+			}else{
+				this.closeSession();
+				throw new IncorrectPasswordException();
 			}
-			
-		} catch (Exception e) {
-			
-			System.out.println("Error al loguear alumno: " + e.getMessage());
-			return null;
-			
-		}finally{
-
-			this.closeSession();
-				
 		}
+	
+		
+		
 		
 	}
 	
