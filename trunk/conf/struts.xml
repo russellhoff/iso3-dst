@@ -20,10 +20,14 @@
             <result  name="input">/jsp/login.jsp</result>
 			<result  name="error">/jsp/error.jsp</result>
 			<!-- login estudiantes: -->
-			<result  name="listStudentSubjects">/jsp/studentSubjects.jsp</result>
+			<result  name="listStudentSubjects" type="chain">doListStudentSubjects</result>
 			<!-- login profesores: -->
 			<result  name="listLecturerSubjects">/jsp/lecturerSubjects.jsp</result>
         </action>
-		
+        
+		<action name="doListStudentSubjects" class="iso3.pt.action.StudentAction" method="">
+			<result>/jsp/studentSubjects.jsp</result>
+        </action>
+				
 	</package>
 </struts>
