@@ -88,6 +88,8 @@ public class Evaluacion {
 		this.alumno = alumno;
 	}
 	
-	
+	public String toString(){
+		return "Evaluación de " + this.getConcepto() + ": " + this.getNota();
+	}
 	
 }

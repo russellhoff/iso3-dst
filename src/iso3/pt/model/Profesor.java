@@ -103,6 +103,8 @@ public class Profesor {
 		this.despacho = despacho;
 	}
 	
-	
+	public String toString(){
+		return "Profesor: " + this.getNombre();
+	}
 	
 }

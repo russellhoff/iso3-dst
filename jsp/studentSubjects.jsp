@@ -7,17 +7,55 @@
 </head>
 <body>
 	<div class="titleDiv"><s:text name="application.title"/></div>
-	<h1><s:text name="label.studentssubjects.subject"/> <s:text name="label.studentssubjects.student"/> <s:property value="studentname"/> (<s:property value="studentdni"/>)</h1>
+	<h1><s:text name="label.studentsubjects.subject"/> <s:text name="label.studentsubjects.student"/> <s:property value="studentName"/> (<s:property value="studentDni"/>)</h1>
 	<br/>
 	<table>
 		<tr>
 			<td>
 				<s:url id="urlLogout" action="showLogin" escapeAmp="false"/>
-				<a href="<s:property value="#urlLogout"/>"><s:text name="label.languagedesigner.logout"/></a>
+				<a href="<s:property value="#studentEnroll"/>"><s:text name="label.studentsubjects.enroll"/></a>
+			</td>
+			<td>
+				<s:url id="urlLogout" action="showLogin" escapeAmp="false"/>
+				<a href="<s:property value="#studentSubjectMark"/>"><s:text name="label.studentsubjects.showsubjectsmarks"/></a>
+			</td>
+			<td>
+				<s:url id="urlLogout" action="showLogin" escapeAmp="false"/>
+				<a href="<s:property value="#urlLogout"/>"><s:text name="label.logout"/></a>
 			</td>
 		</tr>
 	</table>
 	<br/>
+		
+	<table class="borderAll">
+	    <tr>
+	        <th><s:text name="label.studentsubjects.code"/></th>
+	        <th><s:text name="label.studentsubjects.name"/></th>
+	        <th><s:text name="label.studentsubjects.credits"/></th>
+	        <th><s:text name="label.studentsubjects.lecturer"/></th>
+	        <th><s:text name="label.studentsubjects.unitlist"/></th>
+	        <th><s:text name="label.studentsubjects.studentnr"/></th>
+	        <th>&nbsp;&nbsp;</th>
+	        <th>&nbsp;&nbsp;</th>
+	    </tr>
+	    <s:iterator value="asignaturas" status="status">
+	        <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
+	            <td class="nowrap"><s:property value="codigo"/></td>
+	            <td class="nowrap"><s:property value="nombre"/></td>
+	            <td class="nowrap"><s:property value="creditos"/></td>
+	            <td class="nowrap"><s:property value="%{profesor.getNombre()}"/></td>
+	            <td class="nowrap">
+	            	<div>aa</div>
+	            </td>
+	            <td class="nowrap">
+					<div>aa</div>
+				</td>
+	        </tr>
+	    </s:iterator>
+	</table>
+	
+	<s:actionerror />
+	<s:actionmessage />	
 		
 </body>
 </html>
