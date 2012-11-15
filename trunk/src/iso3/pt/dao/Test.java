@@ -3,8 +3,12 @@
  */
 package iso3.pt.dao;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import iso3.pt.model.Alumno;
 import iso3.pt.model.Asignatura;
+import iso3.pt.model.Evaluacion;
 
 /*import java.util.HashMap;
 import java.util.HashSet;
@@ -25,13 +29,31 @@ public class Test {
 		
 		PtDAO elDao = PtDAO.getPtDao();
 		
-		Alumno al = elDao.getAlumno(76548732);
+		Alumno al = elDao.getAlumno(1067499);
 		System.out.println(al.toString());
+		
+		System.out.println(elDao.getProfesor(1).toString());
+		
+		Set<Asignatura> asigs = al.getAsignaturas();
+		Iterator<Asignatura> it = asigs.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().toString());
+		}
+		
+		Set<Evaluacion> evs = al.getEvaluaciones();
+		Iterator<Evaluacion> it2 = evs.iterator();
+		while(it2.hasNext()){
+			System.out.println(it2.next().toString());
+		}
 
-		Alumno al2 = new Alumno(78936045, "1234", "Mario Escondrillas", "944986754");
-		Asignatura as = new Asignatura(43235, "Fundamentos de Bases de Datos", 6);
-		as.addAlumnos(al2);
-		elDao.addAsignatura(as);
+		try {
+			System.out.println(elDao.getProfesorByDni(80409525).toString());
+		} catch (UserNotFoundException e) {
+			System.out.println("Profesor no cargado");
+		}
+		
+		
+		
 		
 	}
 

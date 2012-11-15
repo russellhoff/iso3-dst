@@ -80,7 +80,7 @@ public class PtDAO {
 				System.out.println("Asignatura #" + e.getKey() + ": " + asigAux.getNombre() + " (" + asigAux.getCreditos() + ")");
 			}*/
 			
-			this.closeSession();
+			//this.closeSession(); <-- no funciona sino!!
 			
 		} catch (Exception e) {
 			System.out.println("Error en la consulta de asignaturas: " + e.getMessage() + ". Mas info: " + e.getStackTrace());
@@ -144,7 +144,7 @@ public class PtDAO {
 	 */
 	public Profesor getProfesor(Integer idAsignatura){
 		
-		return this.getAsignatura(idAsignatura).getProfesor();
+		return this.asignaturas.get(idAsignatura).getProfesor();
 		
 	}
 	
@@ -188,11 +188,11 @@ public class PtDAO {
 			System.out.println("Error al obtener las evaluaciones de un alumno ordenadas por asignatura: " + e.getMessage());
 			return null;
 			
-		}finally{
-
+		}/*finally{
+			//si se hace esto, no funciona!!
 			this.closeSession();
 				
-		}
+		}*/
 			
 		
 	}
@@ -304,10 +304,9 @@ public class PtDAO {
 			q.setInteger("dni", id);
 			@SuppressWarnings("unchecked")
 			List<Alumno> alms = q.list();
-			Iterator<Alumno> it = alms.iterator();
 			
-			if( it.hasNext() )
-				return (Alumno) it.next();
+			if(alms.size() != 0 )
+				return alms.get(0);
 			else
 				return null;
 			
@@ -315,11 +314,11 @@ public class PtDAO {
 			System.out.println("Error al obtener alumno: " + e.getMessage());
 			return null;
 			
-		}finally{
-
+		}/*finally{
+			//si se hace esto no funciona!!
 			this.closeSession();
 				
-		}
+		}*/
 			
 			
 		
@@ -365,10 +364,10 @@ public class PtDAO {
 			Alumno alm = (Alumno)it.next();
 			
 			if( alm.getPassword().equals(pass) ){
-				this.closeSession();
+				//this.closeSession(); <-- no funciona sino!!
 				return alm;
 			}else{
-				this.closeSession();
+				//this.closeSession(); <-- no funciona sino!!
 				throw new IncorrectPasswordException();
 			}
 		}
@@ -500,10 +499,10 @@ public class PtDAO {
 			Profesor p = (Profesor)it.next();
 			
 			if( p.getPassword().equals(pass) ){
-				this.closeSession();
+				//this.closeSession(); <-- no funciona sino!!
 				return p;
 			}else{
-				this.closeSession();
+				//this.closeSession(); <-- no funciona sino!!
 				throw new IncorrectPasswordException();
 			}
 		}
@@ -549,13 +548,12 @@ public class PtDAO {
 				System.out.println("Error al obtener las asignatura de un profesor: " + e.getMessage());
 				return null;
 				
-			}finally{
-	
+			}/*finally{
+				//no funciona sino!!
 				this.closeSession();
 				
-			}
-		 * 
-		 */
+			}*/
+		 
 		
 
 		Iterator<Entry<Integer, Asignatura>> it = this.asignaturas.entrySet().iterator();
@@ -612,11 +610,11 @@ public class PtDAO {
 			System.out.println("Error al obtener un profesor con su dni: " + e.getMessage());
 			return null;
 			
-		}finally{
-
+		}/*finally{
+			//no funciona sino!!
 			this.closeSession();
 				
-		}
+		}*/
 		
 	}
 	
@@ -661,12 +659,13 @@ public class PtDAO {
 			System.out.println("Error al obtener las evaluaciones dado el identificador de una asignatura: " + e.getMessage());
 			return null;
 			
-		}finally{
-
+		}/*finally{
+			//no funciona sino!!
 			this.closeSession();
 				
-		}
+		}*/
 		
 	}
+	
 	
 }
