@@ -383,7 +383,7 @@ public class PtDAO {
 	 */
 	public Set<Asignatura> getAsignaturas(Integer idAlumno){
 		
-		Iterator<Entry<Integer, Asignatura>> it = this.asignaturas.entrySet().iterator();
+		/*Iterator<Entry<Integer, Asignatura>> it = this.asignaturas.entrySet().iterator();
 		Set<Asignatura> asignaturasAlumno = new HashSet<Asignatura>();
 		Asignatura asigAux = null;
 		
@@ -398,7 +398,10 @@ public class PtDAO {
 			
 		}
 		
-		return asignaturasAlumno;			
+		return asignaturasAlumno;	*/
+		
+		Alumno alm = this.getAlumno(idAlumno);
+		return alm.getAsignaturas();
 		
 	}
 	
