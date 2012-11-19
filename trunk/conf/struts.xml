@@ -25,9 +25,21 @@
 			<result  name="listLecturerSubjects">/jsp/lecturerSubjects.jsp</result>
         </action>
         
-		<action name="doListStudentSubjects" class="iso3.pt.action.StudentAction" method="">
+		<action name="doListStudentSubjects" class="iso3.pt.action.StudentAction">
 			<result>/jsp/studentSubjects.jsp</result>
+			<result  name="success">/jsp/studentSubjects.jsp</result>
+			<result  name="logout" type="chain">showLogin</result>  
+			<result name="formularioMatricularseNuevaAsignatra">/jsp/studentSubjectRegistrationForm.jsp</result>
+			<result name="matricularseEnAsignatura">/jsp/studentSubjects.jsp</result>
+			<result name="desmatricularseDeAsignatura">/jsp/studentSubjects.jsp</result>
         </action>
+		
+		<action name="doSubject" class="iso3.pt.action.SubjectAction">
+		    <result>/jsp/studentSubjectMarks.jsp</result>
+            <result  name="success">/jsp/studentSubjectMarks.jsp</result>
+            <result  name="showSubjectMarkList">/jsp/studentAllSubjectsMarks.jsp</result>
+            <result  name="showUnitList">/jsp/subjectUnitList.jsp</result>
+		</action>
 				
 	</package>
 </struts>
