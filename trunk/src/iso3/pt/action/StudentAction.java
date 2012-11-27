@@ -21,11 +21,10 @@ public class StudentAction extends ActionSupport implements Preparable {
 	private static final long serialVersionUID = 1L;
 	private Alumno student = null;
 	private Asignatura subject = null;
-	private List<Asignatura> listaAsignaturasMatriculadas = null;
-	private List<Asignatura> listaTodasAsignaturas = null;
+	private List<Asignatura> listaAsignaturasMatriculadas;
+	private List<Asignatura> listaTodasAsignaturas;
 	private int subjectId;
-	private int studentDNI;
-		
+			
 	/*
 	 * Metodos
 	 */
@@ -39,13 +38,9 @@ public class StudentAction extends ActionSupport implements Preparable {
 	}
 	
 	public int getStudentDni(){
-		return this.studentDNI;
+		return this.getStudent().getDni();
 	}
-	
-	public void setStudentDni(int value){
-		this.studentDNI = value;
-	}
-	
+		
 	public int getSubjectId(){
 		return this.subjectId;
 	}
@@ -62,10 +57,6 @@ public class StudentAction extends ActionSupport implements Preparable {
 		this.student = student;
 	}
 
-	/*public Integer getStudentDni(){
-		return this.getStudent().getDni();
-	}*/
-	
 	public String getStudentName(){
 		return this.getStudent().getNombre();
 	}
@@ -93,7 +84,7 @@ public class StudentAction extends ActionSupport implements Preparable {
 		Iterator<Asignatura> it = asigns.iterator();
 		Asignatura aux = null;
 		System.out.println("A cargar asignaturas");
-		if(asigns.isEmpty()) System.out.println("vacía lalista de asignaturas...");
+		if(asigns.isEmpty()) System.out.println("vacía la lista de asignaturas...");
 		while(it.hasNext()){
 			aux = it.next();
 			System.out.println("Asignatura: " + aux.getNombre());
@@ -116,7 +107,9 @@ public class StudentAction extends ActionSupport implements Preparable {
 			aux = it.next();
 			this.listaTodasAsignaturas.add(aux);
 		}
+		
 		return "formularioMatricularseNuevaAsignatura";
+		
 	}
 	
 	public String doMatricularseEnAsignatura(){
@@ -129,6 +122,8 @@ public class StudentAction extends ActionSupport implements Preparable {
 		/* Esto se hace en prepare:
 		 * this.student = (Alumno) ActionContext.getContext().getSession().get("user");
 		 */
+		this.cargarAsignaturas();
+		
 		return SUCCESS;
 	}
 	
@@ -137,7 +132,7 @@ public class StudentAction extends ActionSupport implements Preparable {
 		
 		this.setStudent((Alumno) ActionContext.getContext().getSession().get("user"));
 		System.out.println("Info usuario conectado: " + this.getStudentName() + " - " + this.getStudentDni());
-		
+		System.out.println("Identificador de asignatura: " + this.subjectId);
 		this.cargarAsignaturas();
 		
 	}

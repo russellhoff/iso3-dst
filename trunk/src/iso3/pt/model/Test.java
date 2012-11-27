@@ -223,6 +223,7 @@ public class Test {
   		al11.addAsignatura(as4);
   		al12.addAsignatura(as4);
   		al12.addAsignatura(as2);
+  		al5.addAsignatura(as4); //este tambien hace falta, porque le añadimos una evaluacion.
   		
   		al13.addAsignatura(as5);
   		al14.addAsignatura(as5);

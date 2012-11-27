@@ -34,8 +34,9 @@
 			<result name="desmatricularseDeAsignatura">/jsp/studentSubjects.jsp</result>
         </action>
 		
-		<action name="doSubject" class="iso3.pt.action.SubjectAction">
+		<action name="doSubject" class="iso3.pt.action.SubjectAction" method="studentSubjectMarks">
 		    <result>/jsp/studentSubjectMarks.jsp</result>
+		    <result name="returnToShowAllSubjects" type="chain">doListStudentSubjects</result>
             <result  name="success">/jsp/studentSubjectMarks.jsp</result>
             <result  name="showSubjectMarkList">/jsp/studentAllSubjectsMarks.jsp</result>
             <result  name="showUnitList">/jsp/subjectUnitList.jsp</result>

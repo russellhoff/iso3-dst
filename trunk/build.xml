@@ -12,8 +12,6 @@
 	<property name="dist.dir" value="dist" />
     <!--<property name="hibernate.dir" value="C:\hibernate-distribution-3.6.10.Final"/>-->
     
-	<!--dfdsfsd-->
-	
 	<path id="classpath">
         <pathelement path="${build.dir}"/>
         <fileset dir="${lib.dir}">

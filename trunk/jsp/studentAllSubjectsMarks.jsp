@@ -31,8 +31,8 @@
 	    </tr>
 	    <s:iterator value="listaEvaluaciones" status="status">
 	        <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
-	            <td class="nowrap"><s:property value="subject.nombre"/></td>
-	            <td class="nowrap"><s:property value="subject.id"/></td>
+	            <td class="nowrap"><s:property value="asignatura.nombre"/></td>
+	            <td class="nowrap"><s:property value="id"/></td>
 	            <td class="nowrap"><s:property value="concepto"/></td> 
 	            <td class="nowrap"><s:property value="nota"/></td> 
 	        </tr>
@@ -42,6 +42,12 @@
 	
 	<s:actionerror />
 	<s:actionmessage />	
+	
+	<table>
+		<s:form method="post" action="doSubject!returnFromEvaluationListing">
+			<s:submit value="%{getText('label.cancel')}" />
+		</s:form>
+	</table>
 		
 </body>
 </html>

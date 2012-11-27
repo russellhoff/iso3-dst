@@ -87,6 +87,7 @@ INSERT INTO `matriculado` (`ALM_DNI`,`ASIGN_ID`) VALUES (95815409,5);
 INSERT INTO `matriculado` (`ALM_DNI`,`ASIGN_ID`) VALUES (96059787,4);
 INSERT INTO `matriculado` (`ALM_DNI`,`ASIGN_ID`) VALUES (96756330,1);
 INSERT INTO `matriculado` (`ALM_DNI`,`ASIGN_ID`) VALUES (96756330,5);
+INSERT INTO `matriculado` (`ALM_DNI`,`ASIGN_ID`) VALUES (1067499,4); /* este hace falta, ya que metemos una evaluacion de esa persona en esa asignatura */
 
 /*
 -- Query: SELECT * FROM proyectoiso3.evaluaciones
