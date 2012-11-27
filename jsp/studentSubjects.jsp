@@ -12,12 +12,12 @@
 	<table>
 		<tr>
 			<td>
-				<s:url id="matricularseEnAsignatura" action="doListStudentSubjects!formularioMatricularseNuevaAsignatra" escapeAmp="false"/>
-				<a href="matricularseEnAsignatura"><s:text name="label.studentsubjects.enroll"/></a>
+				<s:url id="studentSubjectMarks" action="doListStudentSubjects!studentSubjectMarks" escapeAmp="false"/>
+				<a href="<s:property value="#studentSubjectMarks"/>"><s:text name="label.studentsubjects.enroll"/></a>
 			</td>
 			<td>
-				<s:url id="consultarTodasNotas" action="showLogin" escapeAmp="false"/>
-				<a href="consultarTodasNotas"><s:text name="label.studentsubjects.showfullmarks"/></a>
+				<s:url id="showSubjectsMarkList" action="doSubject!showSubjectsMarkList" escapeAmp="false"/>
+				<a href="<s:property value="#showSubjectsMarkList"/>"><s:text name="label.studentsubjects.showfullmarks"/></a>
 			</td>
 			<td>
 				<s:url id="urlLogout" action="showLogin" escapeAmp="false"/>
@@ -45,7 +45,7 @@
 	            <td class="nowrap"><s:property value="creditos"/></td>
 	            <td class="nowrap"><s:property value="%{profesor.getNombre()}"/></td>
 	            <td class="nowrap">
-	           		<s:url id="listaUnidadesActual" action="doSubject!ShowSubjectUnits">
+	           		<s:url id="listaUnidadesActual" action="doSubject!showUnitList">
 	           			<s:param name="subjectID" value="%{id}" />
 	           		</s:url>
 					<s:a href="%{listaUnidadesActual}"><s:text name="%{unidades.size()}"/></s:a>
