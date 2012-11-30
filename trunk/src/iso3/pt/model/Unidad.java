@@ -71,6 +71,8 @@ public class Unidad {
 		this.contenido = contenido;
 	}
 	
-	
+	public String toString(){
+		return this.acronimo + ": " + this.titulo;
+	}
 	
 }

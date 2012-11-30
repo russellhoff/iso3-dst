@@ -12,7 +12,7 @@
 	<table>
 		<tr>
 			<td>
-				<s:url id="studentSubjectMarks" action="doListStudentSubjects!studentSubjectMarks" escapeAmp="false"/>
+				<s:url id="studentSubjectMarks" action="doListStudentSubjects!doFormularioMatricularseNuevaAsignatura" escapeAmp="false"/>
 				<a href="<s:property value="#studentSubjectMarks"/>"><s:text name="label.studentsubjects.enroll"/></a>
 			</td>
 			<td>
@@ -54,8 +54,8 @@
 					<s:property value="%{alumnos.size()}"/>
 				</td>
 				<td class="nowrap">
-					<s:url id="desmatricular" action="doListEnrolledSubjects!unEnroll">
-	           			<s:param name="subjectID" value="%{id}" />
+					<s:url id="desmatricular" action="doListStudentSubjects!desmatricularseDeAsignatura">
+	           			<s:param name="subjectId" value="%{id}" />
 	           		</s:url>
 					<s:a href="%{desmatricular}"><s:text name="label.studentsubjects.unenroll"/></s:a>
 				</td>

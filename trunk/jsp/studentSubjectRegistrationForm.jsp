@@ -7,17 +7,21 @@
 </head>
 <body>
 	<div class="titleDiv"><s:text name="application.title"/></div>
-	<h1><s:text name="label.subjectmarks.title"/> <s:property value="studentName"/> (<s:property value="studentDni"/>)</h1>
+	<h1><s:text name="label.subjectregistration.title"/> <s:property value="studentName"/> (<s:property value="studentDni"/>)</h1>
 	<br/>
 	
-	<!-- voy por aquí -->
+	
+	<!-- FORMULARIO DE ENVIAR/ACEPTAR DATOS -->
 	<table>
-		<s:form method="post" action="doSubject!returnFromEvaluationListing">
-			<s:submit value="%{getText('label.cancel')}" />
+		<s:form method="post" action="doListStudentSubjects!matricularseEnAsignatura">
+		
+			<s:select list="listaAsignaturasNoMatriculadas" name="subjectId" listKey="id" listValue="nombre" label="%{getText('label.subjectregistration.selectsubject')}" />
+						
+			<s:submit value="%{getText('label.submit')}" />
 		</s:form>
 	</table>
 	
-	
+	<!-- CANCELAR FORMULARIO Y VOLVER ATRÁS -->
 	<table>
 		<s:form method="post" action="doSubject!returnFromEvaluationListing">
 			<s:submit value="%{getText('label.cancel')}" />

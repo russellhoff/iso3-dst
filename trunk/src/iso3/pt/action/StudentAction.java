@@ -23,12 +23,22 @@ public class StudentAction extends ActionSupport implements Preparable {
 	private Asignatura subject = null;
 	private List<Asignatura> listaAsignaturasMatriculadas;
 	private List<Asignatura> listaTodasAsignaturas;
+	private List<Asignatura> listaAsignaturasNoMatriculadas;
 	private int subjectId;
 			
 	/*
 	 * Metodos
 	 */
 	
+	public List<Asignatura> getListaAsignaturasNoMatriculadas() {
+		return listaAsignaturasNoMatriculadas;
+	}
+
+	public void setListaAsignaturasNoMatriculadas(
+			List<Asignatura> listaAsignaturasNoMatriculadas) {
+		this.listaAsignaturasNoMatriculadas = listaAsignaturasNoMatriculadas;
+	}
+
 	public Asignatura getSubject(){
 		return this.subject;
 	}
@@ -70,7 +80,7 @@ public class StudentAction extends ActionSupport implements Preparable {
 	}
 	
 	public List<Asignatura> getListaTodasAsignaturas(){
-		return this.listaAsignaturasMatriculadas;
+		return this.listaTodasAsignaturas;
 	}
 	
 	public void setListaTodasAsignaturas(List<Asignatura> values){
@@ -100,19 +110,31 @@ public class StudentAction extends ActionSupport implements Preparable {
 	
 	public String doFormularioMatricularseNuevaAsignatura(){
 		this.listaTodasAsignaturas = new ArrayList<Asignatura>();
+		this.listaAsignaturasNoMatriculadas = new ArrayList<Asignatura>();
 		Iterator<Asignatura> it = new PtDaoService().getAsignaturas().iterator();
 		Asignatura aux = null;
 		
 		while(it.hasNext()){
 			aux = it.next();
+			System.out.println("Añadida asignatura para mostrar a la hora de matricularse: " + aux.toString());
 			this.listaTodasAsignaturas.add(aux);
+			
+			if( !student.getAsignaturas().contains(aux) ){
+				//si la lista de asignaturas en las que está matriculado un alumno no contiene la asignatura actual
+				//la añadimos a las asignaturas en las que no está matriculado
+				
+				this.listaAsignaturasNoMatriculadas.add(aux);
+				
+			}
+			
 		}
 		
 		return "formularioMatricularseNuevaAsignatura";
 		
 	}
-	
+		
 	public String doMatricularseEnAsignatura(){
+		System.out.println("Intentando matricular al alumno con dni " + this.student.getDni() + " en la asignatura con codigo " + this.subjectId);
 		new PtDaoService().matricular(this.student.getDni(), this.subjectId);
 		this.cargarAsignaturas();
 		return "matricularseEnAsignatura";
