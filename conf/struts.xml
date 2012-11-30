@@ -29,7 +29,7 @@
 			<result>/jsp/studentSubjects.jsp</result>
 			<result  name="success">/jsp/studentSubjects.jsp</result>
 			<result  name="logout" type="chain">showLogin</result>  
-			<result name="formularioMatricularseNuevaAsignatra">/jsp/studentSubjectRegistrationForm.jsp</result>
+			<result name="formularioMatricularseNuevaAsignatura">/jsp/studentSubjectRegistrationForm.jsp</result>
 			<result name="matricularseEnAsignatura">/jsp/studentSubjects.jsp</result>
 			<result name="desmatricularseDeAsignatura">/jsp/studentSubjects.jsp</result>
         </action>

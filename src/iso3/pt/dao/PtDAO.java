@@ -45,6 +45,7 @@ public class PtDAO {
 	 * Metodos
 	 */
 	/**
+	 * <b>OK</b>
 	 * <h1>Constructora</h1>
 	 * <p>Crea una instancia de la clase PtDAO. También carga automáticamente en la caché las asignaturas.</p>
 	 */
@@ -52,6 +53,11 @@ public class PtDAO {
 		
 		factory = new Configuration().configure().buildSessionFactory();
 		this.openSession();
+		this.cargarAsignaturas();				
+	}
+	
+	private void cargarAsignaturas(){
+		
 		asignaturas = new HashMap<Integer, Asignatura>();
 		
 		Query q = null;
@@ -86,10 +92,10 @@ public class PtDAO {
 			System.out.println("Error en la consulta de asignaturas: " + e.getMessage() + ". Mas info: " + e.getStackTrace());
 			this.closeSession();
 		}
-				
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Crear una sesión</h1>
 	 * <p>Crear una sesión de hibernate</p>
 	 */
@@ -98,6 +104,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Cerrar una sesión</h1>
 	 * <p>Cerrar una sesión de hibernate</p>
 	 */
@@ -105,22 +112,35 @@ public class PtDAO {
 		session.close();
 	}
 	
+	/**
+	 * <b>OK</b>
+	 * <h1>Iniciar transaccion</h1>
+	 * <p>Inicia una transaccion</p>
+	 */
 	private void beginTransaction(){
 		this.tx = null;
-		this.openSession();
 		this.tx = session.beginTransaction();
 	}
 	
+	/**
+	 * <b>OK</b>
+	 * <h1>Validar una transaccion</h1>
+	 */
 	private void commitTransaction(){
 		this.tx.commit();
 	}
 	
+	/**
+	 * <b>OK</b>
+	 * <h1>Deshacer un cambio</h1>
+	 */
 	private void rollbackTransaction(){
 		if ( this.tx != null )
 			this.tx.rollback();
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Devolver la instancia DAO</h1>
 	 * <p>Devuelve la única instancia de PtDAO. Si no existe, crea una.</p>
 	 * @return PtDAO
@@ -137,6 +157,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtener el profesor de una asignatura.</h1>
 	 * <p>Devuelve el profesor de una asignatura, dado el identificador de la asignatura.</p>
 	 * @param idAsignatura
@@ -149,6 +170,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtiene los alumnos de una asignatura.</h1>
 	 * <p>Devuelve los alumnos de una asignatura.</p>
 	 * @param idAsignatura
@@ -159,6 +181,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtiene las evaluaciones de un alumno</h1>
 	 * <p>Devuelve las evaluaciones de un alumno ordenadas por asignaturas.</p>
 	 * @param idAlumno DNI del alumno.
@@ -170,7 +193,6 @@ public class PtDAO {
 		 * Con una consulta simple HQuery, nos ordena las evaluaciones por id de asignatura (Group by u Order by).
 		 */
 		
-		this.openSession();
 		
 		Query q = null;
 		
@@ -188,16 +210,12 @@ public class PtDAO {
 			System.out.println("Error al obtener las evaluaciones de un alumno ordenadas por asignatura: " + e.getMessage());
 			return null;
 			
-		}/*finally{
-			//si se hace esto, no funciona!!
-			this.closeSession();
-				
-		}*/
-			
+		}			
 		
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtiene las evaluaciones de un alumno en una asignatura.</h1>
 	 * <p>Devuelve las evaluaciones de un alumno en una asignatura, dados los ids de alumno y asignatura.</p>
 	 * @param idAsignatura Identificador de la asignatura.
@@ -206,14 +224,31 @@ public class PtDAO {
 	 */
 	public Set<Evaluacion> getEvaluaciones(Integer idAsignatura, Integer idAlumno){
 		Asignatura as = this.getAsignatura(idAsignatura);
+		//System.out.println(as.toString());
 		Alumno al = as.getAlumnoByDni(idAlumno);
-		return al.getEvaluaciones();
-		//no hay que hacerlo con consultas porque tenemos las asignaturas mapeadas:
-		//cuantas menos consultas, menos acceso a disco y más eficiente será la aplicación
-		// (tiempo de acceso a disco >> tiempo de acceso a memoria ram)
+		//System.out.println(al.toString());
+		
+		
+		Set<Evaluacion> evs = al.getEvaluaciones();
+		Iterator<Evaluacion> it = evs.iterator();
+		Evaluacion ev = null;
+		
+		Set<Evaluacion> evsAlmAsign = new HashSet<Evaluacion>();
+		
+		while( it.hasNext() ){
+			ev = it.next();
+			
+			if( ev.getAsignatura().getId().equals(idAsignatura) )
+				evsAlmAsign.add(ev);
+						
+		}
+		
+		return evsAlmAsign;
+		
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Añade una evalación.</h1>
 	 * <p>Dadas una asignatura, alumno y tanto concepto como nota, crea una evaluación a un alumno en una asignatura.</p>
 	 * @param concepto Concepto de evaluación.
@@ -226,7 +261,6 @@ public class PtDAO {
 		Alumno alm = this.getAlumno(idAlumno);
 		
 		System.out.println("Inserción de evaluación");
-		this.openSession();
 		
 		try {
 			
@@ -243,6 +277,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtener las unidades de una asignatura.</h1>
 	 * <p>Devuelve las unidades de una asignatura determinada.</p>
 	 * @param idAsignatura Identificador de la asignatura.
@@ -253,14 +288,14 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Añadir una asignatura.</h1>
 	 * <p>Añade una asignatura.</p>
 	 * @param asignatura La asignatura a añadir.
 	 */
 	public void addAsignatura(Asignatura asignatura){
 		
-		System.out.println("Inserción de evaluación");
-		this.openSession();
+		System.out.println("Añadir asignatura");
 		
 		try {
 			
@@ -278,6 +313,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtener las asignaturas</h1>
 	 * <p>Devuelve las asignaturas en una lista.</p>
 	 * @return
@@ -287,14 +323,13 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtener un alumno</h1>
 	 * <p>Devuelve el alumno dado un identificador (dni).</p>
 	 * @param id DNI del alumno
 	 * @return El Alumno. Si hay excepción, devuelve null;
 	 */
 	public Alumno getAlumno(Integer id){
-		
-		this.openSession();
 		
 		Query q = null;
 		
@@ -325,6 +360,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Obtener asignatura</h1>
 	 * <p>Devuelve la asignatura que tiene un identificador determinado.</p>
 	 * @param id El identificador de la asignatura
@@ -337,6 +373,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Loguear alumno</h1>
 	 * <p>Dado un dni y una contraseña, devuelve el Alumno correspondiente (el proceso de loguear).</p>
 	 * @param dni El DNI del alumno.
@@ -346,8 +383,6 @@ public class PtDAO {
 	 * @throws IncorrectPasswordException
 	 */
 	public Alumno loginAlumno(Integer dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
-		
-		this.openSession();
 		
 		Query q = session.createQuery("from Alumno as al where al.dni=:dni");
 		q.setInteger("dni", dni);
@@ -376,6 +411,7 @@ public class PtDAO {
 	
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Devuelve las asignaturas en las que está matriculado un alumno</h1>
 	 * <p>Dado un id de alumno, devuelve sus asignaturas en las que está matriculado.</p>
 	 * @param idAlumno El DNI del alumno
@@ -406,41 +442,42 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <h1>OK</h1>
 	 * <h1>Matricular un alumno en una asignatura.</h1>
 	 * <p>Matricula a un alumno en una asignatura.</p>
 	 * @param idAlumno
 	 * @param idAsignatura
 	 */
-	public void matricular(Integer idAlumno, Integer idAsignatura){
+	public void matricular(int idAlumno, int idAsignatura){
 		
-		Asignatura asign = this.getAsignatura(idAsignatura);
-		Alumno alm = this.getAlumno(idAlumno);
-		
-		System.out.println("Matricular a alumno en una asignatura");
-		this.openSession();
-		
-		asign.addAlumnos(alm);
-		alm.addAsignatura(asign);
-		
-		try {
+			this.beginTransaction();	
+					
+			System.out.println("Matricular a alumno en una asignatura");
+			Alumno alm = this.getAlumno(idAlumno);
+			System.out.println(alm.toString());
+			Asignatura asign = this.getAsignatura(idAsignatura);
+			System.out.println(asign.toString());
 			
-			this.beginTransaction();
-			session.update(asign);
+			alm.addAsignatura(asign);
+			System.out.println("Asociada la asignatura al alumno");
+			
+			asign.addAlumnos(alm);
+			System.out.println("Asociada la asignatura al alumno");
+			
 			session.update(alm);
+			System.out.println("Alumno updated");
+			
+			session.update(asign);
+			System.out.println("Asignatura updated");
+			
 			this.commitTransaction();
 			
-		} catch (Exception e) {
-			this.rollbackTransaction();
-			
-			alm.removeAsignatura(asign);
-			asign.removeAlumnos(alm);
-			
-			this.closeSession();
-			System.out.println("Error al matricular un alumno de una asignatura: " + e.getMessage());
-		}
+		
 	}
 	
+	
 	/**
+	 * <h1>OK</h1>
 	 * <h1>Desmatricular un alumno en una asignatura.</h1>
 	 * <p>Desmatricula a un alumno en una asignatura.</p>
 	 * @param idAlumno
@@ -451,7 +488,6 @@ public class PtDAO {
 		Alumno alm = this.getAlumno(idAlumno);
 		
 		System.out.println("Desmatricular a alumno en una asignatura");
-		this.openSession();
 		
 		alm.removeAsignatura(asign);
 		asign.removeAlumnos(alm);
@@ -475,6 +511,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <b>OK</b>
 	 * <h1>Loguear profesor</h1>
 	 * <p>Dado un dni y una password, devuelve el profesor logueado.</p>
 	 * @param dni El Dni del profesor
@@ -484,8 +521,6 @@ public class PtDAO {
 	 * @throws IncorrectPasswordException
 	 */
 	public Profesor loginProfesor(Integer dni, String pass) throws UserNotFoundException, IncorrectPasswordException{
-		
-		this.openSession();
 		
 		Query q = session.createQuery("from Profesor as p where p.dni=:dni");
 		q.setInteger("dni", dni);
@@ -516,9 +551,10 @@ public class PtDAO {
 	}
 	
 	/**
-	 * <h1>Devuelve las asignaturas que imparte un profesor.</h1>
+	 * <h1>OK</h1>
+	 * <h1>Devuelve las asignaturas que imparte un profesor dado su DNI.</h1>
 	 * <p>Dado un identificador de un profesor, el método obtiene en un Set las asignaturas que imparte.</p>
-	 * @param idProfesor Identificador del profesor.
+	 * @param idProfesor Identificador del profesor, DNI del profesor.
 	 * @return Set<Asignatura> La lista de las asignaturas.
 	 */
 	public Set<Asignatura> getAsignaturasProfesor(Integer idProfesor){
@@ -568,7 +604,7 @@ public class PtDAO {
 			Map.Entry<Integer,Asignatura> e= (Map.Entry<Integer,Asignatura>)it.next();
 			asigAux = (Asignatura)e.getValue();	
 			
-			if( asigAux.getProfesor().getId().equals(idProfesor) ){
+			if( asigAux.getProfesor().getDni().equals(idProfesor) ){
 				asignaturasProf.add(asigAux);
 			}
 			
@@ -580,6 +616,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <h1>OK</h1>
 	 * <h1>Devuelve un profesor con un dni.</h1>
 	 * <p>Dado un DNI, devuelve el profesor asociado.</p>
 	 * @param dni El dni del profesor.
@@ -587,8 +624,6 @@ public class PtDAO {
 	 * @throws UserNotFoundException Cuando no se encuentra un profesor con ese dni.
 	 */
 	public Profesor getProfesorByDni(Integer dni) throws UserNotFoundException{
-		
-		this.openSession();
 		
 		Query q = null;
 		
@@ -622,6 +657,7 @@ public class PtDAO {
 	}
 	
 	/**
+	 * <h1>OK</h1>
 	 * <h1>Devuelve todas evaluaciones de una asignatura</h1>
 	 * <p>Dado un identificador de una asignatura, devuelve todas las evaluaciones correspondientes a la asignatura esa.</p>
 	 * @param idAsignatura El identificador de la asignatura
@@ -633,8 +669,6 @@ public class PtDAO {
 		 * No se puede hacer con las asignaturas mapeadas
 		 * porque las asignaturas no guardan referencias de sus evaluaciones.
 		 */
-		
-		this.openSession();
 		
 		Query q = null;
 		
