@@ -30,6 +30,7 @@ public class Profesor {
 	 */
 	public Profesor(Integer dni, String password, String nombre, String telefono, String email, String despacho){
 		
+		
 		this.dni = dni;
 		this.password = password;
 		this.nombre = nombre;
@@ -40,11 +41,10 @@ public class Profesor {
 	}
 	
 	/**
-	 * <h1>Constructora vacia</h1>
+	 * <h1>Constructora vacía</h1>
 	 * <p></p>
 	 */
 	public Profesor(){
-		
 	}
 
 	public Integer getId() {
@@ -103,6 +103,7 @@ public class Profesor {
 		this.despacho = despacho;
 	}
 	
+
 	public String toString(){
 		return "Profesor: " + this.getNombre();
 	}
