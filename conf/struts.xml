@@ -22,7 +22,7 @@
 			<!-- login estudiantes: -->
 			<result  name="listStudentSubjects" type="chain">doListStudentSubjects</result>
 			<!-- login profesores: -->
-			<result  name="listLecturerSubjects">/jsp/lecturerSubjects.jsp</result>
+			<result  name="listLecturerSubjects" type="chain">doListLecturerSubjects</result>
         </action>
         
 		<action name="doListStudentSubjects" class="iso3.pt.action.StudentAction">
@@ -33,13 +33,36 @@
 			<result name="matricularseEnAsignatura">/jsp/studentSubjects.jsp</result>
 			<result name="desmatricularseDeAsignatura">/jsp/studentSubjects.jsp</result>
         </action>
-		
+        
+        <action name="doListLecturerSubjects" class="iso3.pt.action.LecturerAction">
+        	<result>/jsp/lecturerSubjects.jsp</result>
+        	<result name="success">/jsp/lecturerSubjects.jsp</result>
+        	<result name="logout" type="chain">showLogin</result>
+        	<result name="showStudents">/jsp/subjectStudents.jsp</result>
+        	<result name="addMark" type="chain">doMarks</result>
+        </action>
+        
+        <action name="doMarks" class="iso3.pt.action.MarkAction" method="addMark">
+        	<result>/jsp/studentSubjectMarkingForm.jsp</result>
+        	<result name="return" type="chain">doListLecturerSubjects</result>
+        	<result name="success">/jsp/studentSubjectMarkingForm.jsp</result>
+        	<result name="saveMark">/jsp/studentSubjectMarks.jsp</result>
+        </action>
+        
+        <action name="doSubjectLecturer" class="iso3.pt.action.UnitAction" method="showUnitListLecturer">
+			<result>/jsp/showUnitListLecturer.jsp</result>
+			<result name="return" type="chain">doListLecturerSubjects</result>
+			<result  name="success">/jsp/showUnitListLecturer.jsp</result>
+			<result  name="showUnitListLecturer">/jsp/subjectUnitListLecturer.jsp</result>
+		</action>
+			
 		<action name="doSubject" class="iso3.pt.action.SubjectAction" method="studentSubjectMarks">
-		    <result>/jsp/studentSubjectMarks.jsp</result>
+		    <result>/jsp/studentAllSubjectsMarks.jsp</result>
 		    <result name="returnToShowAllSubjects" type="chain">doListStudentSubjects</result>
-            <result  name="success">/jsp/studentSubjectMarks.jsp</result>
+            <result  name="success">/jsp/studentAllSubjectsMarks.jsp</result>
             <result  name="showSubjectMarkList">/jsp/studentAllSubjectsMarks.jsp</result>
             <result  name="showUnitList">/jsp/subjectUnitList.jsp</result>
+            
 		</action>
 				
 	</package>

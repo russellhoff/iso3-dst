@@ -7,36 +7,39 @@
 </head>
 <body>
 	<div class="titleDiv"><s:text name="application.title"/></div>
-	<h1><s:text name="label.subjectmarks.title"/> <s:property value="studentName"/> (<s:property value="studentDni"/>)</h1>
+	<h1><s:text name="label.allsubjectmarks.marks"/> "<s:property value="student.nombre"/>" <s:text name="label.allsubjectmarks.subjects"/> "<s:property value="subject.nombre"/>"</h1>
 	<br/>
 	<table class="borderAll">
-		<tr>
+	    <tr>
 	        <th><s:text name="label.allsubjectmarks.dni"/></th>
-	        <th><s:text name="label.studentsubjects.name"/></th>
+	        <th><s:text name="label.allsubjectmarks.name"/></th>
 	        <th><s:text name="label.allsubjectmarks.tfno"/></th>
 	    </tr>
-	    <tr>
-	    	<td><s:property value="student.dni"/></td>	
-	    	<td><s:property value="student.nombre"/></td>
-	    	<td><s:property value="student.telefono"/></td>		
-	    </tr>
+	    <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
+			<td class="nowrap"><s:property value="student.dni"/></td>
+			<td class="nowrap"><s:property value="student.nombre"/></td>
+			<td class="nowrap"><s:property value="student.telefono"/></td>
+		</tr>	
 	</table>
 	<br/>
 	<table class="borderAll">
 		<tr>
-	        <th><s:text name="label.studentsubjects.code"/></th>
+			<th><s:text name="label.studentsubjects.code"/></th>
 	        <th><s:text name="label.studentsubjects.name"/></th>
 	        <th><s:text name="label.studentsubjects.credits"/></th>
 	        <th><s:text name="label.studentsubjects.lecturer"/></th>
 	        <th><s:text name="label.studentsubjects.studentnr"/></th>
+		<tr>		
+	    <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
+	        <td class="nowrap"><s:property value="subject.codigo"/></td>
+	        <td class="nowrap"><s:property value="subject.nombre"/></td>
+	        <td class="nowrap"><s:property value="subject.creditos"/></td>
+	        <td class="nowrap"><s:property value="lecturer.nombre"/></td>
+	        <td class="nowrap">
+				<s:property value="%{subject.alumnos.size()}"/>
+			</td>
 	    </tr>
-	    <tr>
-	    	<td><s:property value="subject.codigo"/></td>	
-	    	<td><s:property value="subject.nombre"/></td>
-	    	<td><s:property value="subject.creditos"/></td>	
-	    	<td><s:property value="subjectLecturerName"/></td>
-	    	<td><s:property value="%{subject.alumnos.size()}"/></td>
-	    </tr>
+
 	</table>
 	<br/>
 	<table class="borderAll">
@@ -58,7 +61,7 @@
 	<s:actionmessage />	
 	
 	<table>
-		<s:form method="post" action="doSubject!returnFromEvaluationListing">
+		<s:form method="post" action="doMarks!returnFromEvaluationListing">
 			<s:submit value="%{getText('label.cancel')}" />
 		</s:form>
 	</table>
