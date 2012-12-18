@@ -1,0 +1,26 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="iso3.pt.model.Profesor" table="PROFESORES">
+		<!-- 
+		
+		- El identificador será asignado por la base de datos automáticamente.
+		- El nombre del profesor debe ser único y requerido.
+		
+		 -->
+
+        <id name="id" column="PROF_ID">
+            <generator class="native"/>
+        </id>
+
+		<property name="dni" column="PROF_DNI" />
+		<property name="password" column="PROF_PASSWORD" />
+        <property name="nombre" column="PROF_NOMBRE" unique="true" not-null="true"/><!-- Requerido: not-null="true" -->
+		<property name="telefono" column="PROF_TFNO" />
+		<property name="email" column="PROF_EMAIL" />
+		<property name="despacho" column="PROF_DESPACHO" />
+		
+    </class>
+
+</hibernate-mapping>
