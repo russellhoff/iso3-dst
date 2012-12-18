@@ -10,16 +10,22 @@
 	<h1><s:text name="label.subjectregistration.title"/> <s:property value="studentName"/> (<s:property value="studentDni"/>)</h1>
 	<br/>
 	
-	
-	<!-- FORMULARIO DE ENVIAR/ACEPTAR DATOS -->
-	<table>
-		<s:form method="post" action="doListStudentSubjects!matricularseEnAsignatura">
-		
-			<s:select list="listaAsignaturasNoMatriculadas" name="subjectId" listKey="id" listValue="nombre" label="%{getText('label.subjectregistration.selectsubject')}" />
-						
-			<s:submit value="%{getText('label.submit')}" />
-		</s:form>
-	</table>
+	<s:if test="%{getListaAsignaturasNoMatriculadas().isEmpty()}">
+
+		<s:text name="text.subjectregistrationform.nosubjectsleft" />
+
+	</s:if>
+	<s:else>
+		<!-- FORMULARIO DE ENVIAR/ACEPTAR DATOS -->
+		<table>
+			<s:form method="post" action="doListStudentSubjects!matricularseEnAsignatura">
+			
+				<s:select list="listaAsignaturasNoMatriculadas" name="subjectId" listKey="id" listValue="nombre" label="%{getText('label.subjectregistration.selectsubject')}" />
+							
+				<s:submit value="%{getText('label.submit')}" />
+			</s:form>
+		</table>
+	</s:else>
 	
 	<!-- CANCELAR FORMULARIO Y VOLVER ATRÁS -->
 	<table>

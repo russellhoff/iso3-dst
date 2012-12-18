@@ -9,7 +9,6 @@ import iso3.pt.model.Alumno;
 import iso3.pt.model.Asignatura;
 import iso3.pt.model.Evaluacion;
 import iso3.pt.model.Profesor;
-import iso3.pt.model.Unidad;
 import iso3.pt.service.PtDaoService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -162,6 +161,7 @@ public class MarkAction extends ActionSupport implements Preparable {
 	 * @return
 	 */
 	public String doReturnFromEvaluationListing(){
+		System.out.println("Hemos pulsado el botón de cancelar y volvemos atrás.");
 		return "return";
 	}
 	
@@ -173,8 +173,6 @@ public class MarkAction extends ActionSupport implements Preparable {
 	public void prepare() throws Exception {
 		
 		this.setLecturer((Profesor) ActionContext.getContext().getSession().get("user"));
-		
-
 		
 	}
 
