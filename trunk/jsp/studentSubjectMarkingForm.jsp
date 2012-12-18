@@ -58,12 +58,13 @@
 		<s:hidden name="studentDni" value="%{studentDni}"/>
 		<s:textfield name="concept" label="%{getText('label.subjectmarks.concept')}"/>
 		<s:textfield name="mark" label="%{getText('label.subjectmarks.mark')}"/>
+		
 		<s:submit
 			value="%{getText('label.submit')}"
 		/>
 	</s:form>
 
-	<s:form action="doMarks!returnFromEvaluationListing" method="post">
+	<s:form action="doListLecturerSubjects" method="post">
 	<s:submit
 		value="%{getText('label.cancel')}"
 	/>

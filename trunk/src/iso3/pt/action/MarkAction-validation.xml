@@ -7,19 +7,24 @@
 	<field name="concept">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<!-- <message>Concept is required</message> -->
-			<message key="errors.required.login.concept"/>
+			<!-- Este mensaje saldria si no pusieramos i18n: <message>Concept is required</message> -->
+			<message key="errors.required.marking.concept"/>
 		</field-validator>
 	</field>
 	
-	<field property="mark" depends="float">
-        <arg0 key="mark"/>
-    </field>
-    
 	<field name="mark">
 		<field-validator type="required">
-			<param name="trim">true</param>
-			<message key="errors.required.login.password"/>
+			<message key="errors.required.marking.mark" />
+		</field-validator>	
+		<!-- <field-validator type="regex">
+		    <param name="expression">^(10.0)$|^([0-9].[0-9])$</param>
+			<message key="errors.range.marking.mark" />
+		</field-validator>    -->
+		
+		<field-validator type="double">
+		    <param name="minInclusive">0.0</param>
+		    <param name="maxInclusive">10.0</param>
+			<message key="errors.range.marking.mark" />
 		</field-validator>
 	</field>
 </validators>

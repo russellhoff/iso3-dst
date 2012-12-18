@@ -1,6 +1,7 @@
 @ECHO OFF
 set start=%time%
 ECHO Empezando el despliegue: %start%
+::TODO LO QUE EMPIECE ASI SON COMENTARIOS
 ::SET _GESTORUD-ROOT=C:\Users\Jon_Inazio\Dropbox\workspaces-Deusto\workspace-iso3\gestorUD
 ::CD %_GESTORUD-ROOT%
 

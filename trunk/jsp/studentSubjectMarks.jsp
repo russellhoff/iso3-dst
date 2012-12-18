@@ -56,15 +56,15 @@
 	        </tr>
 	    </s:iterator>
 	</table>
+	
+	<table>
+		<s:form action="doMarks!returnFromEvaluationListing" method="post" >
+			<s:submit value="%{getText('label.cancel')}" />
+		</s:form>
+	</table>
 	<br/>
 	<s:actionerror />
 	<s:actionmessage />	
 	
-	<table>
-		<s:form method="post" action="doMarks!returnFromEvaluationListing">
-			<s:submit value="%{getText('label.cancel')}" />
-		</s:form>
-	</table>
-		
 </body>
 </html>
