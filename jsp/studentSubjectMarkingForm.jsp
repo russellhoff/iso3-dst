@@ -46,6 +46,14 @@
 	</table>
 	<br/><br/>
 	<s:form action="doMarks!saveMark" method="POST">
+	
+		<tr>
+			<td colspan="2">
+				<s:actionerror />
+				<!--<s:fielderror />-->
+			</td>
+		</tr>
+	
 		<s:hidden name="subjectID" value="%{subjectID}"/>
 		<s:hidden name="studentDni" value="%{studentDni}"/>
 		<s:textfield name="concept" label="%{getText('label.subjectmarks.concept')}"/>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="iso3.pt.model.Unidad" table="UNIDADES">
+
+		<!-- 
+		
+		- El identificador será asignado por la base de datos automáticamente.
+		- El acrónimo de la unidad y el título son requeridos. Además el acrónimo debe ser
+			único.
+		
+		 -->
+
+        <id name="id" column="UD_ID">
+            <generator class="native" />
+        </id>
+
+        <property name="acronimo" column="UD_ACRONIMO" unique="true" not-null="true" />
+		<property name="titulo" column="UD_TITULO" not-null="true" />
+		<!-- Se puede hacer asi la de abajo, tambien: <property name="contenido" type="string" column="UD_CONTENIDO" />  -->
+		<property name="contenido" type="string">
+		    <column name="UD_CONTENIDO" length="500"/>
+		</property>
+
+    </class>
+
+</hibernate-mapping>

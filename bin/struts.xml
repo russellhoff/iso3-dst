@@ -45,7 +45,6 @@
         <action name="doMarks" class="iso3.pt.action.MarkAction" method="addMark">
         	<result>/jsp/studentSubjectMarkingForm.jsp</result>
         	<result name="return" type="chain">doListLecturerSubjects</result>
-        	<result  name="error">/jsp/error.jsp</result>
         	<result name="success">/jsp/studentSubjectMarkingForm.jsp</result>
         	<result name="saveMark">/jsp/studentSubjectMarks.jsp</result>
         </action>
